@@ -6,25 +6,45 @@
 
 <title>Tasty & Quality — Noodles & Biriyani Spot</title>
 
-<meta name="description" content="Tasty & Quality Noodles and Biriyani Spot, Gudur. Biriyani, noodles, fried rice and starters.">
+<meta
+name="description"
+content="Tasty & Quality Noodles & Biriyani Spot - Premium biriyani, noodles, fried rice and starters in Gudur."
+>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800;900&display=swap"
+rel="stylesheet">
 
 <style>
 
+/* =====================================================
+   ROOT
+===================================================== */
+
 :root{
     --black:#050505;
-    --black2:#0b0b0b;
+    --black-soft:#090909;
+    --black-card:#0d0d0d;
+
     --gold:#d4af37;
-    --gold-light:#f7df82;
-    --gold-dark:#987016;
-    --white:#fff;
-    --muted:#999;
-    --border:rgba(212,175,55,.20);
+    --gold-light:#ffe895;
+    --gold-dark:#92701a;
+
+    --white:#ffffff;
+    --text:#dddddd;
+    --muted:#888888;
+
+    --border:rgba(212,175,55,.18);
+    --border-strong:rgba(212,175,55,.45);
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     margin:0;
@@ -49,26 +69,113 @@ img{
 }
 
 a{
-    text-decoration:none;
     color:inherit;
+    text-decoration:none;
 }
 
 button{
     font-family:inherit;
 }
 
-/* =====================================
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+.section{
+    padding:95px 0;
+}
+
+.section-label{
+    color:var(--gold);
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+}
+
+.section-title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(42px,5.2vw,68px);
+    line-height:.95;
+    letter-spacing:-2px;
+}
+
+.section-title span{
+    color:var(--gold-light);
+}
+
+.section-text{
+    color:#999;
+    font-size:12px;
+    line-height:1.85;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 22px;
+    border-radius:2px;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    transition:.3s ease;
+}
+
+.btn-gold{
+    color:#050505;
+    background:
+        linear-gradient(
+            135deg,
+            #fff3ad,
+            var(--gold),
+            var(--gold-dark)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(212,175,55,.20);
+}
+
+.btn-gold:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 16px 45px rgba(212,175,55,.38);
+}
+
+.btn-outline{
+    color:#fff;
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(255,255,255,.035);
+}
+
+.btn-outline:hover{
+    color:var(--gold-light);
+    border-color:var(--gold);
+}
+
+
+/* =====================================================
    LOADER
-===================================== */
+===================================================== */
 
 .loader{
     position:fixed;
     inset:0;
     z-index:99999;
     background:#030303;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     transition:.7s ease;
 }
 
@@ -82,66 +189,82 @@ button{
 }
 
 .loader-logo{
-    width:82px;
-    height:82px;
+    width:80px;
+    height:80px;
+
     border:1px solid var(--gold);
     border-radius:50%;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     margin:auto;
+
     box-shadow:
-        0 0 25px rgba(212,175,55,.2),
-        inset 0 0 25px rgba(212,175,55,.08);
-    animation:loaderPulse 1.6s infinite;
+        0 0 30px rgba(212,175,55,.18);
+
+    animation:pulseLogo 1.6s infinite;
 }
 
 .loader-logo span{
-    font-family:"Playfair Display",serif;
     color:var(--gold-light);
-    font-size:27px;
+    font-family:"Playfair Display",serif;
+    font-size:25px;
 }
 
 .loader-text{
     margin-top:17px;
     color:var(--gold-light);
-    font-size:9px;
+    font-size:8px;
     letter-spacing:5px;
     text-transform:uppercase;
 }
 
-@keyframes loaderPulse{
+@keyframes pulseLogo{
+
     50%{
         transform:scale(1.06);
-        box-shadow:0 0 45px rgba(212,175,55,.35);
+        box-shadow:
+            0 0 45px rgba(212,175,55,.35);
     }
+
 }
 
-/* =====================================
+
+/* =====================================================
    NAVBAR
-===================================== */
+===================================================== */
 
 .navbar{
     position:fixed;
-    top:0;
     left:0;
     right:0;
+    top:0;
+
     z-index:5000;
-    padding:18px 0;
+
+    padding:16px 0;
+
     transition:.35s ease;
 }
 
 .navbar.scrolled{
-    padding:11px 0;
-    background:rgba(4,4,4,.84);
-    backdrop-filter:blur(20px);
+    padding:10px 0;
+
+    background:rgba(3,3,3,.90);
+
+    backdrop-filter:blur(18px);
+
     border-bottom:1px solid var(--border);
 }
 
 .nav{
     width:94%;
     max-width:1200px;
+
     margin:auto;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -150,49 +273,64 @@ button{
 .logo{
     display:flex;
     align-items:center;
-    gap:11px;
+    gap:10px;
 }
 
 .logo-mark{
-    width:43px;
-    height:43px;
+    width:40px;
+    height:40px;
+
     border-radius:50%;
     border:1px solid var(--gold);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     color:var(--gold-light);
+
     font-family:"Playfair Display",serif;
+    font-size:13px;
     font-weight:700;
-    box-shadow:0 0 20px rgba(212,175,55,.14);
 }
 
 .logo-text strong{
     display:block;
-    font-size:13px;
+
+    color:#fff;
+
+    font-size:12px;
+    font-weight:800;
+
     letter-spacing:1px;
 }
 
 .logo-text span{
     display:block;
+
     margin-top:3px;
+
     color:var(--gold);
-    font-size:8px;
-    letter-spacing:3px;
+
+    font-size:7px;
+    letter-spacing:2.5px;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:29px;
+    gap:27px;
 }
 
 .nav-links a{
-    color:#ddd;
-    font-size:10px;
+    color:#ccc;
+
+    font-size:9px;
     font-weight:700;
+
     letter-spacing:1px;
     text-transform:uppercase;
+
     transition:.25s;
 }
 
@@ -201,246 +339,296 @@ button{
 }
 
 .nav-order{
-    border:1px solid var(--gold);
-    border-radius:30px;
-    padding:11px 17px;
     color:var(--gold-light)!important;
+
+    border:1px solid var(--gold);
+
+    border-radius:20px;
+
+    padding:9px 14px;
 }
 
 .nav-order:hover{
-    background:var(--gold);
     color:#000!important;
+    background:var(--gold);
 }
 
 .menu-toggle{
     display:none;
+
     border:0;
     background:none;
+
     color:#fff;
-    font-size:27px;
+
+    font-size:25px;
+
     cursor:pointer;
 }
 
-/* =====================================
+
+/* =====================================================
    HERO
-===================================== */
+===================================================== */
 
 .hero{
     min-height:100vh;
+
     position:relative;
-    overflow:hidden;
+
     display:flex;
     align-items:center;
-    padding:120px 0 70px;
+
+    overflow:hidden;
+
+    padding:130px 0 80px;
 
     background:
+
         linear-gradient(
             90deg,
-            rgba(0,0,0,.96) 0%,
-            rgba(0,0,0,.84) 36%,
-            rgba(0,0,0,.52) 68%,
-            rgba(0,0,0,.25) 100%
+            rgba(0,0,0,.97) 0%,
+            rgba(0,0,0,.88) 38%,
+            rgba(0,0,0,.58) 68%,
+            rgba(0,0,0,.28) 100%
         ),
+
         url("https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=2200&q=90")
-        center/cover;
+        center/cover no-repeat;
 }
 
 .hero:after{
     content:"";
+
     position:absolute;
     inset:0;
+
     pointer-events:none;
 
     background:
         radial-gradient(
-            circle at 78% 50%,
-            rgba(212,175,55,.18),
-            transparent 27%
+            circle at 80% 48%,
+            rgba(212,175,55,.17),
+            transparent 28%
         ),
+
         linear-gradient(
-            180deg,
-            transparent 62%,
+            to bottom,
+            transparent 65%,
             #050505 100%
         );
 }
 
-.container{
-    width:min(1180px,92%);
-    margin:auto;
-}
-
 .hero-content{
     position:relative;
+
     z-index:5;
-    max-width:650px;
+
+    width:60%;
+    max-width:730px;
 }
 
 .hero-kicker{
     color:var(--gold-light);
-    font-size:10px;
-    font-weight:700;
+
+    font-size:9px;
+    font-weight:800;
+
     letter-spacing:5px;
+
     text-transform:uppercase;
+
     margin-bottom:20px;
 }
 
-.hero h1{
+
+/* VERY LARGE RESTAURANT NAME */
+
+.restaurant-name{
     font-family:"Playfair Display",serif;
-    font-size:clamp(50px,7vw,88px);
-    line-height:.94;
-    letter-spacing:-3px;
+
+    font-size:
+        clamp(
+            55px,
+            8.5vw,
+            112px
+        );
+
+    font-weight:800;
+
+    line-height:.82;
+
+    letter-spacing:-5px;
+
+    text-transform:none;
+
+    text-shadow:
+        0 8px 35px rgba(0,0,0,.7);
 }
 
-.hero h1 span{
+.restaurant-name .white{
+    display:block;
+    color:#fff;
+}
+
+.restaurant-name .gold{
     display:block;
     color:var(--gold-light);
+
+    text-shadow:
+        0 0 35px rgba(212,175,55,.20);
+}
+
+.restaurant-subtitle{
+    margin-top:18px;
+
+    color:var(--gold);
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
 }
 
 .hero-description{
-    max-width:550px;
-    color:#ccc;
-    font-size:14px;
+    max-width:560px;
+
+    margin-top:20px;
+
+    color:#c6c6c6;
+
+    font-size:12px;
+
     line-height:1.8;
-    margin-top:24px;
 }
 
 .hero-buttons{
     display:flex;
-    gap:13px;
-    margin-top:30px;
+
+    gap:12px;
+
+    margin-top:27px;
 }
 
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:14px 22px;
-    border-radius:2px;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:1.2px;
-    text-transform:uppercase;
-    transition:.3s ease;
-}
+.hero-note{
+    margin-top:23px;
 
-.btn-gold{
-    color:#050505;
-    background:
-        linear-gradient(
-            135deg,
-            #fff2a9,
-            var(--gold),
-            var(--gold-dark)
-        );
-    box-shadow:0 10px 30px rgba(212,175,55,.22);
-}
+    color:#777;
 
-.btn-gold:hover{
-    transform:translateY(-3px);
-    box-shadow:0 15px 45px rgba(212,175,55,.4);
-}
+    font-size:8px;
 
-.btn-outline{
-    border:1px solid rgba(255,255,255,.3);
-    color:#fff;
-    background:rgba(255,255,255,.04);
-}
-
-.btn-outline:hover{
-    border-color:var(--gold);
-    color:var(--gold-light);
-    transform:translateY(-3px);
-}
-
-.hero-badge{
-    margin-top:26px;
-    color:#999;
-    font-size:9px;
     letter-spacing:2px;
 }
 
-.hero-badge:before{
+.hero-note:before{
     content:"";
+
     display:inline-block;
+
     width:30px;
     height:1px;
+
     background:var(--gold);
-    margin-right:10px;
+
+    margin-right:9px;
+
+    vertical-align:middle;
 }
 
-/* =====================================
-   HERO FOOD IMAGE
-===================================== */
+
+/* =====================================================
+   HERO FOOD
+===================================================== */
 
 .hero-food{
     position:absolute;
-    z-index:3;
+
+    z-index:4;
+
     right:4%;
+
     top:50%;
+
     transform:translateY(-50%);
-    width:475px;
-    height:475px;
+
+    width:430px;
+    height:430px;
+
     border-radius:50%;
+
     overflow:hidden;
 
-    border:8px solid rgba(212,175,55,.52);
+    border:7px solid rgba(212,175,55,.65);
 
     box-shadow:
-        0 0 0 13px rgba(255,255,255,.025),
-        0 0 0 15px rgba(212,175,55,.15),
+
+        0 0 0 11px rgba(212,175,55,.07),
+
+        0 0 0 15px rgba(212,175,55,.13),
+
         0 35px 100px rgba(0,0,0,.8),
-        0 0 80px rgba(212,175,55,.16);
+
+        0 0 80px rgba(212,175,55,.15);
 }
 
 .hero-food img{
     width:100%;
     height:100%;
+
     object-fit:cover;
-    object-position:center;
-    filter:saturate(1.15) contrast(1.08);
+
+    filter:
+        saturate(1.16)
+        contrast(1.08);
 }
 
 .hero-food:after{
     content:"";
+
     position:absolute;
     inset:0;
+
     background:
         radial-gradient(
             circle,
             transparent 28%,
-            rgba(0,0,0,.15) 58%,
-            rgba(0,0,0,.65) 100%
+            rgba(0,0,0,.05) 55%,
+            rgba(0,0,0,.58) 100%
         );
 }
 
-.hero-ring{
-    position:absolute;
-    inset:-24px;
-    border-radius:50%;
-    border:1px solid rgba(212,175,55,.35);
-    pointer-events:none;
-}
 
-/* =====================================
+/* =====================================================
    GOLD STRIP
-===================================== */
+===================================================== */
 
 .gold-strip{
-    padding:17px 0;
+    padding:15px 0;
+
+    background:#090909;
+
     border-top:1px solid var(--border);
     border-bottom:1px solid var(--border);
-    background:rgba(212,175,55,.045);
 }
 
 .strip-inner{
     display:flex;
-    align-items:center;
+
     justify-content:center;
+    align-items:center;
+
     flex-wrap:wrap;
-    gap:20px;
-    color:#aaa;
-    font-size:8px;
+
+    gap:17px;
+
+    color:#888;
+
+    font-size:7px;
+
     letter-spacing:3px;
+
     text-transform:uppercase;
 }
 
@@ -448,206 +636,236 @@ button{
     color:var(--gold);
 }
 
-/* =====================================
-   COMMON SECTION
-===================================== */
 
-.section{
-    padding:110px 0;
-}
-
-.section-label{
-    color:var(--gold);
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:5px;
-    text-transform:uppercase;
-    margin-bottom:14px;
-}
-
-.section-title{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(40px,5vw,64px);
-    line-height:.98;
-}
-
-.section-title span{
-    color:var(--gold-light);
-}
-
-.section-text{
-    color:#999;
-    font-size:13px;
-    line-height:1.85;
-}
-
-/* =====================================
+/* =====================================================
    ABOUT
-===================================== */
+===================================================== */
 
 .about{
     background:
         radial-gradient(
-            circle at 10% 40%,
-            rgba(212,175,55,.06),
+            circle at 85% 50%,
+            rgba(212,175,55,.045),
             transparent 30%
         );
 }
 
 .about-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:75px;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:70px;
+
     align-items:center;
 }
 
+.about-copy{
+    max-width:600px;
+}
+
 .about-copy .section-text{
-    max-width:560px;
-    margin-top:23px;
+    margin-top:20px;
 }
 
 .features{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:30px;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:10px;
+
+    margin-top:28px;
 }
 
 .feature{
-    position:relative;
-    padding:22px;
-    overflow:hidden;
-    border:1px solid rgba(212,175,55,.14);
+    padding:20px;
+
+    min-height:120px;
+
+    border:1px solid rgba(212,175,55,.12);
+
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.05),
-            rgba(255,255,255,.015)
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
         );
-    transition:.35s;
+
+    transition:.3s;
 }
 
 .feature:hover{
-    transform:translateY(-6px);
-    border-color:rgba(212,175,55,.55);
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(212,175,55,.50);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35);
 }
 
 .feature-icon{
     color:var(--gold-light);
-    font-size:20px;
-    margin-bottom:12px;
+
+    font-size:18px;
+
+    margin-bottom:9px;
 }
 
 .feature h3{
     font-family:"Playfair Display",serif;
-    font-size:18px;
-    margin-bottom:7px;
+
+    font-size:16px;
+
+    margin-bottom:6px;
 }
 
 .feature p{
-    color:#888;
-    font-size:10px;
-    line-height:1.7;
+    color:#777;
+
+    font-size:8px;
+
+    line-height:1.6;
 }
 
-/* =====================================
+
+/* =====================================================
    ABOUT IMAGE
-===================================== */
+===================================================== */
 
 .about-visual{
-    min-height:510px;
     position:relative;
+
     display:flex;
+
     justify-content:center;
     align-items:center;
+
+    min-height:470px;
 }
 
 .about-image{
-    width:390px;
-    height:470px;
+    width:400px;
+    height:430px;
+
     object-fit:cover;
-    object-position:center;
-    border:1px solid rgba(212,175,55,.38);
+
+    border:1px solid var(--border-strong);
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.7),
-        0 0 50px rgba(212,175,55,.08);
+        0 35px 80px rgba(0,0,0,.65);
 }
 
 .about-frame{
     position:absolute;
-    width:420px;
-    height:500px;
+
+    width:425px;
+    height:455px;
+
     border:1px solid rgba(212,175,55,.18);
-    transform:translate(22px,22px);
-    pointer-events:none;
+
+    transform:
+        translate(
+            20px,
+            20px
+        );
 }
 
 .about-badge{
     position:absolute;
-    bottom:18px;
-    left:20px;
-    width:230px;
-    padding:24px;
-    background:rgba(5,5,5,.88);
+
+    left:30px;
+    bottom:5px;
+
+    width:225px;
+
+    padding:20px;
+
+    background:
+        rgba(5,5,5,.92);
+
     backdrop-filter:blur(15px);
-    border:1px solid rgba(212,175,55,.35);
+
+    border:1px solid var(--border-strong);
 }
 
 .about-badge small{
     color:var(--gold);
-    font-size:8px;
+
+    font-size:7px;
+
     letter-spacing:4px;
 }
 
 .about-badge h3{
     color:var(--gold-light);
+
     font-family:"Playfair Display",serif;
-    font-size:30px;
-    margin:7px 0;
+
+    font-size:27px;
+
+    margin:5px 0;
 }
 
 .about-badge p{
-    color:#999;
-    font-size:9px;
+    color:#888;
+
+    font-size:8px;
+
     line-height:1.6;
 }
 
-/* =====================================
-   SIGNATURE
-===================================== */
+
+/* =====================================================
+   SIGNATURE NOODLES
+===================================================== */
 
 .signature{
     background:
         linear-gradient(
             90deg,
-            #080808,
-            #11100a,
-            #080808
+            #070707,
+            #0c0b07,
+            #070707
         );
-    border-top:1px solid rgba(212,175,55,.1);
-    border-bottom:1px solid rgba(212,175,55,.1);
+
+    border-top:1px solid rgba(212,175,55,.10);
+    border-bottom:1px solid rgba(212,175,55,.10);
 }
 
 .signature-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:65px;
+
     align-items:center;
 }
 
 .signature-visual{
     position:relative;
+
     height:500px;
+
     overflow:hidden;
-    border:1px solid rgba(212,175,55,.25);
+
+    border:1px solid var(--border-strong);
 }
 
 .signature-visual img{
     width:100%;
     height:100%;
+
     object-fit:cover;
+
     transition:.7s;
 }
 
@@ -658,129 +876,177 @@ button{
 .signature-overlay{
     position:absolute;
     inset:0;
+
     background:
         linear-gradient(
-            180deg,
-            rgba(0,0,0,.05),
-            rgba(0,0,0,.75)
+            to top,
+            rgba(0,0,0,.72),
+            transparent 55%
         );
 }
 
 .signature-label{
     position:absolute;
-    bottom:25px;
+
     left:25px;
+    bottom:23px;
+
     color:var(--gold-light);
-    font-size:9px;
+
+    font-size:8px;
+
     letter-spacing:5px;
 }
 
 .signature-content .section-text{
-    max-width:500px;
-    margin-top:22px;
+    max-width:510px;
+
+    margin-top:20px;
 }
 
 .signature-points{
-    margin-top:28px;
+    margin-top:25px;
+
     display:grid;
-    gap:12px;
+
+    gap:10px;
 }
 
 .signature-point{
     color:#bbb;
-    font-size:11px;
+
+    font-size:9px;
 }
 
 .signature-point span{
     color:var(--gold);
-    margin-right:9px;
+
+    margin-right:8px;
 }
 
-/* =====================================
+
+/* =====================================================
    MENU
-===================================== */
+===================================================== */
 
 .menu-section{
     background:
         radial-gradient(
             circle at 90% 20%,
-            rgba(212,175,55,.06),
-            transparent 30%
+            rgba(212,175,55,.05),
+            transparent 28%
         );
 }
 
 .menu-header{
     display:flex;
-    align-items:end;
+
+    align-items:flex-end;
+
     justify-content:space-between;
+
     gap:25px;
-    margin-bottom:40px;
+
+    margin-bottom:35px;
 }
 
 .menu-filters{
     display:flex;
+
     flex-wrap:wrap;
-    gap:7px;
+
+    gap:6px;
 }
 
 .filter{
-    padding:9px 13px;
-    border:1px solid rgba(255,255,255,.12);
+    padding:8px 11px;
+
+    color:#777;
+
     background:transparent;
-    color:#999;
-    font-size:8px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    font-size:7px;
+
     letter-spacing:1px;
+
     text-transform:uppercase;
+
     cursor:pointer;
+
     transition:.25s;
 }
 
-.filter.active,
-.filter:hover{
+.filter:hover,
+.filter.active{
     color:var(--gold-light);
+
     border-color:var(--gold);
-    background:rgba(212,175,55,.06);
+
+    background:rgba(212,175,55,.05);
 }
 
 .menu-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:10px;
 }
 
 .menu-card{
-    min-height:125px;
     display:flex;
+
     align-items:center;
-    gap:17px;
-    border:1px solid rgba(212,175,55,.12);
+
+    min-height:118px;
+
+    overflow:hidden;
+
     background:
         linear-gradient(
             145deg,
             rgba(255,255,255,.045),
-            rgba(255,255,255,.012)
+            rgba(255,255,255,.01)
         );
-    overflow:hidden;
-    transition:.35s;
+
+    border:1px solid rgba(212,175,55,.12);
+
+    transition:.3s;
 }
 
 .menu-card:hover{
     transform:translateY(-4px);
-    border-color:rgba(212,175,55,.55);
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
+
+    border-color:
+        rgba(212,175,55,.50);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.35);
+}
+
+.menu-card.hide{
+    display:none;
 }
 
 .menu-image{
-    width:145px;
-    min-width:145px;
-    height:125px;
+    width:125px;
+    min-width:125px;
+
+    height:118px;
+
     overflow:hidden;
 }
 
 .menu-image img{
     width:100%;
     height:100%;
+
     object-fit:cover;
+
     transition:.5s;
 }
 
@@ -790,118 +1056,156 @@ button{
 
 .menu-info{
     flex:1;
-    padding:16px 0;
+
     min-width:0;
+
+    padding:15px 9px 15px 14px;
 }
 
 .menu-category{
     color:var(--gold);
-    font-size:7px;
+
+    font-size:6px;
+
     letter-spacing:3px;
+
     text-transform:uppercase;
-    margin-bottom:6px;
+
+    margin-bottom:5px;
 }
 
 .menu-name{
     font-family:"Playfair Display",serif;
-    font-size:17px;
+
+    font-size:15px;
+
+    white-space:normal;
 }
 
 .menu-description{
-    color:#777;
-    font-size:8px;
+    color:#707070;
+
+    font-size:7px;
+
     line-height:1.5;
-    margin-top:5px;
+
+    margin-top:4px;
 }
 
 .menu-price{
     color:var(--gold-light);
+
     font-family:"Playfair Display",serif;
-    font-size:17px;
+
+    font-size:14px;
+
     white-space:nowrap;
-    padding-right:20px;
+
+    padding-right:15px;
 }
 
-.menu-card.hide{
-    display:none;
-}
 
-/* =====================================
+/* =====================================================
    ORDER
-===================================== */
+===================================================== */
 
 .order{
-    padding:90px 0;
+    padding:85px 0;
+
     border-top:1px solid var(--border);
     border-bottom:1px solid var(--border);
+
     background:
         linear-gradient(
             90deg,
-            rgba(212,175,55,.05),
+            rgba(212,175,55,.045),
             transparent,
-            rgba(212,175,55,.05)
+            rgba(212,175,55,.045)
         );
 }
 
 .order-head{
-    max-width:700px;
+    max-width:650px;
+
     margin:auto;
+
     text-align:center;
 }
 
 .order-head .section-text{
-    margin-top:17px;
+    margin-top:15px;
 }
 
 .order-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-    margin-top:40px;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:35px;
 }
 
 .order-card{
-    padding:34px 20px;
+    padding:30px 20px;
+
     text-align:center;
-    border:1px solid rgba(212,175,55,.16);
-    background:rgba(255,255,255,.025);
+
+    border:1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.02);
+
     transition:.3s;
 }
 
 .order-card:hover{
-    transform:translateY(-7px);
+    transform:translateY(-6px);
+
     border-color:var(--gold);
 }
 
 .order-icon{
-    font-size:27px;
-    margin-bottom:13px;
+    font-size:25px;
+
+    margin-bottom:10px;
 }
 
 .order-card h3{
     font-family:"Playfair Display",serif;
-    font-size:22px;
+
+    font-size:20px;
 }
 
 .order-card p{
     color:#777;
-    font-size:9px;
-    margin:8px 0 18px;
+
+    font-size:8px;
+
+    margin:7px 0 17px;
 }
 
-/* =====================================
+
+/* =====================================================
    LOCATION
-===================================== */
+===================================================== */
 
 .location-grid{
     display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:35px;
+
+    grid-template-columns:
+        .8fr
+        1.2fr;
+
+    gap:30px;
 }
 
 .contact-box{
-    padding:38px;
-    border:1px solid rgba(212,175,55,.18);
+    padding:35px;
+
+    border:1px solid var(--border);
+
     background:
         linear-gradient(
             145deg,
@@ -911,70 +1215,100 @@ button{
 }
 
 .contact-item{
-    padding:18px 0;
+    padding:16px 0;
+
     border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .contact-label{
     color:var(--gold);
-    font-size:8px;
+
+    font-size:7px;
+
     letter-spacing:3px;
+
     text-transform:uppercase;
+
     margin-bottom:6px;
 }
 
 .contact-value{
     color:#ccc;
-    font-size:11px;
-    line-height:1.6;
+
+    font-size:10px;
+
+    line-height:1.7;
+}
+
+.contact-phone{
+    color:var(--gold-light);
+
+    font-weight:700;
 }
 
 .map-box{
-    min-height:440px;
+    min-height:400px;
+
     overflow:hidden;
-    border:1px solid rgba(212,175,55,.25);
+
+    border:1px solid var(--border-strong);
 }
 
 .map-box iframe{
     width:100%;
     height:100%;
-    min-height:440px;
+
+    min-height:400px;
+
     border:0;
 }
 
-/* =====================================
+
+/* =====================================================
    CTA
-===================================== */
+===================================================== */
 
 .final-cta{
     position:relative;
+
     overflow:hidden;
-    padding:130px 0;
+
+    padding:105px 0;
+
     text-align:center;
+
     background:
         radial-gradient(
             circle at center,
-            rgba(212,175,55,.13),
-            transparent 40%
+            rgba(212,175,55,.12),
+            transparent 43%
         );
 }
 
 .cta-ring{
     position:absolute;
-    width:650px;
-    height:650px;
+
+    width:580px;
+    height:580px;
+
     left:50%;
     top:50%;
+
     transform:translate(-50%,-50%);
-    border:1px solid rgba(212,175,55,.09);
+
+    border:1px solid rgba(212,175,55,.08);
+
     border-radius:50%;
 }
 
 .cta-ring:before,
 .cta-ring:after{
     content:"";
+
     position:absolute;
-    border:1px solid rgba(212,175,55,.07);
+
+    border:1px solid rgba(212,175,55,.06);
+
     border-radius:50%;
 }
 
@@ -988,37 +1322,49 @@ button{
 
 .cta-content{
     position:relative;
+
     z-index:2;
 }
 
 .cta-content p{
-    max-width:550px;
-    margin:20px auto 28px;
+    max-width:520px;
+
+    margin:18px auto 25px;
+
     color:#888;
-    font-size:11px;
+
+    font-size:9px;
+
     line-height:1.8;
 }
 
-/* =====================================
+
+/* =====================================================
    FOOTER
-===================================== */
+===================================================== */
 
 footer{
-    padding:32px 0;
+    padding:28px 0;
+
     background:#030303;
-    border-top:1px solid rgba(212,175,55,.12);
+
+    border-top:1px solid var(--border);
 }
 
 .footer-inner{
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
+
+    justify-content:space-between;
+
     gap:20px;
 }
 
 .footer-copy{
     color:#555;
-    font-size:8px;
+
+    font-size:7px;
 }
 
 .footer-copy strong{
@@ -1027,76 +1373,108 @@ footer{
 
 .footer-links{
     display:flex;
-    gap:18px;
+
+    gap:16px;
 }
 
 .footer-links a{
     color:#666;
-    font-size:9px;
+
+    font-size:8px;
 }
 
 .footer-links a:hover{
     color:var(--gold);
 }
 
-/* =====================================
+
+/* =====================================================
    WHATSAPP
-===================================== */
+===================================================== */
 
 .whatsapp{
     position:fixed;
+
     right:20px;
     bottom:20px;
+
     z-index:4000;
-    width:53px;
-    height:53px;
+
+    width:50px;
+    height:50px;
+
     border-radius:50%;
-    background:#25D366;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
+    background:#25D366;
+
     color:#fff;
-    font-size:22px;
-    box-shadow:0 10px 35px rgba(0,0,0,.55);
+
+    font-size:21px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.55);
+
     transition:.3s;
 }
 
 .whatsapp:hover{
-    transform:scale(1.08) translateY(-4px);
+    transform:
+        translateY(-4px)
+        scale(1.08);
 }
 
-/* =====================================
+
+/* =====================================================
    REVEAL
-===================================== */
+===================================================== */
 
 .reveal{
     opacity:0;
-    transform:translateY(30px);
-    transition:.8s ease;
+
+    transform:translateY(25px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
 }
 
 .reveal.show{
     opacity:1;
+
     transform:translateY(0);
 }
 
-/* =====================================
-   RESPONSIVE
-===================================== */
+
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media(max-width:950px){
 
     .nav-links{
         position:absolute;
-        top:72px;
+
+        top:68px;
+
         left:3%;
         right:3%;
-        padding:20px;
+
+        padding:18px;
+
         background:rgba(5,5,5,.97);
+
         backdrop-filter:blur(20px);
+
         border:1px solid var(--border);
+
         display:none;
+
         flex-direction:column;
+
         gap:0;
     }
 
@@ -1105,8 +1483,12 @@ footer{
     }
 
     .nav-links a{
-        padding:14px 5px;
-        border-bottom:1px solid rgba(255,255,255,.07);
+        width:100%;
+
+        padding:13px 5px;
+
+        border-bottom:
+            1px solid rgba(255,255,255,.07);
     }
 
     .menu-toggle{
@@ -1119,29 +1501,37 @@ footer{
         background:
             linear-gradient(
                 180deg,
-                rgba(0,0,0,.91),
-                rgba(0,0,0,.66),
+                rgba(0,0,0,.93),
+                rgba(0,0,0,.67),
                 rgba(0,0,0,.96)
             ),
+
             url("https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1800&q=90")
             center/cover;
     }
 
     .hero-content{
-        padding-top:40px;
+        width:100%;
+        max-width:700px;
     }
 
     .hero-food{
-        width:370px;
-        height:370px;
+        width:350px;
+        height:350px;
+
         top:auto;
+        bottom:25px;
+
         right:50%;
-        bottom:30px;
+
         transform:translateX(50%);
     }
 
     .about-grid,
-    .signature-grid,
+    .signature-grid{
+        grid-template-columns:1fr;
+    }
+
     .location-grid{
         grid-template-columns:1fr;
     }
@@ -1150,11 +1540,12 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .menu-header{
-        flex-direction:column;
-        align-items:flex-start;
-    }
 }
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:650px){
 
@@ -1162,34 +1553,64 @@ footer{
         width:90%;
     }
 
-    .navbar{
-        padding:14px 0;
+    .section{
+        padding:75px 0;
     }
 
-    .logo-text strong{
-        font-size:11px;
+    .navbar{
+        padding:12px 0;
     }
 
     .logo-mark{
-        width:39px;
-        height:39px;
+        width:37px;
+        height:37px;
+    }
+
+    .logo-text strong{
+        font-size:10px;
+    }
+
+    .logo-text span{
+        font-size:6px;
+        letter-spacing:2px;
     }
 
     .hero{
-        min-height:850px;
+        min-height:840px;
+
+        padding:
+            115px
+            0
+            35px;
     }
 
-    .hero h1{
-        font-size:49px;
-        letter-spacing:-2px;
+    .restaurant-name{
+        font-size:
+            clamp(
+                52px,
+                15vw,
+                72px
+            );
+
+        letter-spacing:-3px;
+    }
+
+    .restaurant-subtitle{
+        font-size:8px;
+
+        letter-spacing:3px;
     }
 
     .hero-description{
-        font-size:12px;
+        font-size:10px;
+
+        max-width:400px;
     }
 
     .hero-buttons{
         flex-direction:column;
+
+        width:100%;
     }
 
     .hero-buttons .btn{
@@ -1197,13 +1618,20 @@ footer{
     }
 
     .hero-food{
-        width:305px;
-        height:305px;
-        bottom:35px;
+        width:280px;
+        height:280px;
+
+        bottom:25px;
     }
 
-    .section{
-        padding:80px 0;
+    .strip-inner{
+        font-size:6px;
+
+        gap:10px;
+    }
+
+    .section-title{
+        font-size:42px;
     }
 
     .features{
@@ -1211,27 +1639,36 @@ footer{
     }
 
     .about-visual{
-        min-height:430px;
+        min-height:420px;
     }
 
     .about-image{
-        width:300px;
-        height:400px;
+        width:290px;
+        height:390px;
     }
 
     .about-frame{
-        width:325px;
-        height:425px;
+        width:315px;
+        height:415px;
     }
 
     .about-badge{
-        width:210px;
-        bottom:10px;
-        left:10px;
+        left:0;
+        bottom:0;
+
+        width:205px;
+
+        padding:17px;
     }
 
     .signature-visual{
         height:350px;
+    }
+
+    .menu-header{
+        flex-direction:column;
+
+        align-items:flex-start;
     }
 
     .menu-grid{
@@ -1239,57 +1676,95 @@ footer{
     }
 
     .menu-card{
-        min-height:115px;
+        min-height:105px;
     }
 
     .menu-image{
-        width:105px;
-        min-width:105px;
-        height:115px;
+        width:100px;
+        min-width:100px;
+
+        height:105px;
     }
 
     .menu-name{
-        font-size:15px;
+        font-size:14px;
     }
 
     .menu-description{
-        font-size:7px;
+        font-size:6.5px;
     }
 
     .menu-price{
-        font-size:15px;
-        padding-right:13px;
+        font-size:13px;
+
+        padding-right:10px;
     }
 
     .contact-box{
-        padding:28px;
+        padding:27px;
     }
 
     .map-box,
     .map-box iframe{
-        min-height:350px;
+        min-height:330px;
     }
 
     .footer-inner{
         flex-direction:column;
+
         text-align:center;
     }
 
     .cta-ring{
-        width:430px;
-        height:430px;
+        width:400px;
+        height:400px;
     }
+
+    .whatsapp{
+        right:16px;
+        bottom:16px;
+
+        width:48px;
+        height:48px;
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL
+===================================================== */
+
+@media(max-width:380px){
+
+    .restaurant-name{
+        font-size:49px;
+
+        letter-spacing:-2.5px;
+    }
+
+    .hero-food{
+        width:250px;
+        height:250px;
+    }
+
+    .menu-image{
+        width:85px;
+        min-width:85px;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 
-<!-- =====================================
+<!-- =====================================================
      LOADER
-===================================== -->
+===================================================== -->
 
 <div class="loader" id="loader">
 
@@ -1308,9 +1783,9 @@ footer{
 </div>
 
 
-<!-- =====================================
+<!-- =====================================================
      NAVBAR
-===================================== -->
+===================================================== -->
 
 <header class="navbar" id="navbar">
 
@@ -1339,17 +1814,29 @@ footer{
 
         <div class="nav-links" id="navLinks">
 
-            <a href="#home">Home</a>
+            <a href="#home">
+                Home
+            </a>
 
-            <a href="#about">About</a>
+            <a href="#about">
+                About
+            </a>
 
-            <a href="#menu">Menu</a>
+            <a href="#menu">
+                Menu
+            </a>
 
-            <a href="#order">Order</a>
+            <a href="#order">
+                Order
+            </a>
 
-            <a href="#location">Location</a>
+            <a href="#location">
+                Location
+            </a>
 
-            <a href="#order" class="nav-order">
+            <a
+            href="#order"
+            class="nav-order">
                 Order Now
             </a>
 
@@ -1357,9 +1844,11 @@ footer{
 
 
         <button
-            class="menu-toggle"
-            id="menuToggle">
+        class="menu-toggle"
+        id="menuToggle">
+
             ☰
+
         </button>
 
     </nav>
@@ -1367,9 +1856,9 @@ footer{
 </header>
 
 
-<!-- =====================================
+<!-- =====================================================
      HERO
-===================================== -->
+===================================================== -->
 
 <section class="hero" id="home">
 
@@ -1381,34 +1870,63 @@ footer{
                 Authentic • Fresh • Delicious
             </div>
 
-            <h1>
-                Taste That
-                <span>Feels Royal.</span>
+
+            <!-- LARGE RESTAURANT NAME -->
+
+            <h1 class="restaurant-name">
+
+                <span class="white">
+                    Tasty & Quality
+                </span>
+
+                <span class="gold">
+                    Noodles & Biriyani
+                </span>
+
             </h1>
 
+
+            <div class="restaurant-subtitle">
+                Premium Food • Gudur
+            </div>
+
+
             <p class="hero-description">
-                Premium biriyani, noodles, fried rice and delicious
-                starters prepared with rich flavours and quality ingredients.
+
+                Premium biriyani, delicious noodles,
+                fried rice and flavourful starters
+                prepared with quality ingredients
+                and rich authentic flavours.
+
             </p>
+
 
             <div class="hero-buttons">
 
                 <a
-                    href="#menu"
-                    class="btn btn-gold">
+                href="#menu"
+                class="btn btn-gold">
+
                     Explore Menu
+
                 </a>
 
+
                 <a
-                    href="#order"
-                    class="btn btn-outline">
+                href="#order"
+                class="btn btn-outline">
+
                     Order Online
+
                 </a>
 
             </div>
 
-            <div class="hero-badge">
-                Gudur's destination for flavour lovers
+
+            <div class="hero-note">
+
+                Vivekananda Road • Gudur
+
             </div>
 
         </div>
@@ -1416,24 +1934,24 @@ footer{
     </div>
 
 
+    <!-- HERO BIRIYANI IMAGE -->
+
     <div class="hero-food">
 
         <img
-            src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=90"
-            alt="Chicken Biriyani"
-            loading="eager"
-            onerror="this.src='https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1200&q=90';">
-
-        <div class="hero-ring"></div>
+        src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=90"
+        alt="Chicken Biriyani"
+        loading="eager"
+        onerror="this.src='https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1200&q=90';">
 
     </div>
 
 </section>
 
 
-<!-- =====================================
-     GOLD STRIP
-===================================== -->
+<!-- =====================================================
+     STRIP
+===================================================== -->
 
 <div class="gold-strip">
 
@@ -1458,11 +1976,13 @@ footer{
 </div>
 
 
-<!-- =====================================
+<!-- =====================================================
      ABOUT
-===================================== -->
+===================================================== -->
 
-<section class="section about" id="about">
+<section
+class="section about"
+id="about">
 
     <div class="container">
 
@@ -1475,16 +1995,26 @@ footer{
                     Our Story
                 </div>
 
+
                 <h2 class="section-title">
+
                     Simple Food.
-                    <span>Extraordinary Taste.</span>
+
+                    <span>
+                        Extraordinary Taste.
+                    </span>
+
                 </h2>
 
+
                 <p class="section-text">
-                    Welcome to Tasty & Quality Noodles and Biriyani Spot.
-                    We bring together delicious flavours, fresh ingredients
-                    and satisfying portions to create food that you will
-                    want to come back for.
+
+                    Welcome to Tasty & Quality Noodles
+                    and Biriyani Spot. We bring together
+                    delicious flavours, fresh ingredients
+                    and satisfying portions to create food
+                    that you will want to come back for.
+
                 </p>
 
 
@@ -1502,8 +2032,8 @@ footer{
                         </h3>
 
                         <p>
-                            Carefully selected ingredients for better
-                            taste and quality.
+                            Carefully selected ingredients
+                            for better taste and quality.
                         </p>
 
                     </div>
@@ -1520,8 +2050,8 @@ footer{
                         </h3>
 
                         <p>
-                            Food prepared fresh and served with rich
-                            aroma and flavour.
+                            Freshly prepared food with
+                            rich aroma and flavour.
                         </p>
 
                     </div>
@@ -1538,8 +2068,8 @@ footer{
                         </h3>
 
                         <p>
-                            Carefully balanced spices for an unforgettable
-                            experience.
+                            Carefully balanced spices
+                            for an unforgettable experience.
                         </p>
 
                     </div>
@@ -1556,8 +2086,8 @@ footer{
                         </h3>
 
                         <p>
-                            Every dish is prepared with attention
-                            and care.
+                            Every dish is prepared
+                            with attention and care.
                         </p>
 
                     </div>
@@ -1568,16 +2098,19 @@ footer{
             </div>
 
 
+            <!-- CENTRE FOOD IMAGE -->
+
             <div class="about-visual reveal">
 
                 <div class="about-frame"></div>
 
+
                 <img
-                    class="about-image"
-                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=90"
-                    alt="Indian food"
-                    loading="lazy"
-                    onerror="this.src='https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=900&q=90';">
+                class="about-image"
+                src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=90"
+                alt="Delicious Noodles"
+                loading="lazy"
+                onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=90';">
 
 
                 <div class="about-badge">
@@ -1591,8 +2124,9 @@ footer{
                     </h3>
 
                     <p>
-                        Quality food, satisfying portions and
-                        flavours worth remembering.
+                        Quality food, satisfying
+                        portions and flavours worth
+                        remembering.
                     </p>
 
                 </div>
@@ -1606,9 +2140,9 @@ footer{
 </section>
 
 
-<!-- =====================================
-     SIGNATURE BIRIYANI
-===================================== -->
+<!-- =====================================================
+     SIGNATURE NOODLES
+===================================================== -->
 
 <section class="section signature">
 
@@ -1619,16 +2153,20 @@ footer{
 
             <div class="signature-visual reveal">
 
+                <!-- NOODLES IMAGE -->
+
                 <img
-                    src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1200&q=90"
-                    alt="Signature Chicken Biriyani"
-                    loading="lazy"
-                    onerror="this.src='https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=90';">
+                src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1300&q=90"
+                alt="Signature Chicken Noodles"
+                loading="lazy"
+                onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1300&q=90';">
+
 
                 <div class="signature-overlay"></div>
 
+
                 <div class="signature-label">
-                    SIGNATURE BIRIYANI
+                    SIGNATURE NOODLES
                 </div>
 
             </div>
@@ -1640,24 +2178,29 @@ footer{
                     Signature Dish
                 </div>
 
+
                 <h2 class="section-title">
+
                     The
-                    <span>Biriyani</span>
+                    <span>
+                        Noodles
+                    </span>
                     Experience.
+
                 </h2>
 
+
                 <p class="section-text">
-                    Aromatic rice, rich spices and perfectly cooked chicken
-                    come together for a satisfying biriyani experience.
+
+                    Freshly cooked noodles tossed with
+                    vegetables, sauces and rich flavours.
+                    A delicious plate made for true
+                    noodle lovers.
+
                 </p>
 
 
                 <div class="signature-points">
-
-                    <div class="signature-point">
-                        <span>✓</span>
-                        Rich aromatic spices
-                    </div>
 
                     <div class="signature-point">
                         <span>✓</span>
@@ -1666,7 +2209,12 @@ footer{
 
                     <div class="signature-point">
                         <span>✓</span>
-                        Perfectly balanced flavours
+                        Rich flavours
+                    </div>
+
+                    <div class="signature-point">
+                        <span>✓</span>
+                        Quality ingredients
                     </div>
 
                     <div class="signature-point">
@@ -1678,10 +2226,12 @@ footer{
 
 
                 <a
-                    href="#menu"
-                    class="btn btn-gold"
-                    style="margin-top:30px;">
+                href="#menu"
+                class="btn btn-gold"
+                style="margin-top:28px;">
+
                     View Full Menu
+
                 </a>
 
             </div>
@@ -1693,13 +2243,16 @@ footer{
 </section>
 
 
-<!-- =====================================
+<!-- =====================================================
      MENU
-===================================== -->
+===================================================== -->
 
-<section class="section menu-section" id="menu">
+<section
+class="section menu-section"
+id="menu">
 
     <div class="container">
+
 
         <div class="menu-header reveal">
 
@@ -1710,8 +2263,12 @@ footer{
                 </div>
 
                 <h2 class="section-title">
+
                     Made To
-                    <span>Crave.</span>
+                    <span>
+                        Crave.
+                    </span>
+
                 </h2>
 
             </div>
@@ -1720,32 +2277,32 @@ footer{
             <div class="menu-filters">
 
                 <button
-                    class="filter active"
-                    data-filter="all">
+                class="filter active"
+                data-filter="all">
                     All
                 </button>
 
                 <button
-                    class="filter"
-                    data-filter="biriyani">
+                class="filter"
+                data-filter="biriyani">
                     Biriyani
                 </button>
 
                 <button
-                    class="filter"
-                    data-filter="noodles">
+                class="filter"
+                data-filter="noodles">
                     Noodles
                 </button>
 
                 <button
-                    class="filter"
-                    data-filter="rice">
+                class="filter"
+                data-filter="rice">
                     Fried Rice
                 </button>
 
                 <button
-                    class="filter"
-                    data-filter="starter">
+                class="filter"
+                data-filter="starter">
                     Starters
                 </button>
 
@@ -1757,19 +2314,19 @@ footer{
         <div class="menu-grid">
 
 
-            <!-- 01 CHICKEN BIRIYANI -->
+            <!-- BIRIYANI -->
 
             <div
-                class="menu-card reveal"
-                data-category="biriyani">
+            class="menu-card reveal"
+            data-category="biriyani">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=90"
-                        alt="Chicken Dum Biriyani"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=90"
+                    alt="Chicken Dum Biriyani"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -1796,19 +2353,17 @@ footer{
             </div>
 
 
-            <!-- 02 FULL BIRIYANI -->
-
             <div
-                class="menu-card reveal"
-                data-category="biriyani">
+            class="menu-card reveal"
+            data-category="biriyani">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=700&q=90"
-                        alt="Full Chicken Biriyani"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=700&q=90"
+                    alt="Chicken Dum Biriyani Full"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -1835,19 +2390,19 @@ footer{
             </div>
 
 
-            <!-- 03 VEG NOODLES -->
+            <!-- NOODLES -->
 
             <div
-                class="menu-card reveal"
-                data-category="noodles">
+            class="menu-card reveal"
+            data-category="noodles">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=700&q=90"
-                        alt="Veg Noodles"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90"
+                    alt="Veg Noodles"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -1862,7 +2417,7 @@ footer{
                     </div>
 
                     <div class="menu-description">
-                        Fresh vegetables tossed with delicious noodles.
+                        Fresh vegetables tossed with noodles.
                     </div>
 
                 </div>
@@ -1874,19 +2429,17 @@ footer{
             </div>
 
 
-            <!-- 04 EGG NOODLES -->
-
             <div
-                class="menu-card reveal"
-                data-category="noodles">
+            class="menu-card reveal"
+            data-category="noodles">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=90"
-                        alt="Egg Noodles"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=90"
+                    alt="Egg Noodles"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -1913,19 +2466,17 @@ footer{
             </div>
 
 
-            <!-- 05 CHICKEN NOODLES -->
-
             <div
-                class="menu-card reveal"
-                data-category="noodles">
+            class="menu-card reveal"
+            data-category="noodles">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90"
-                        alt="Chicken Noodles"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90"
+                    alt="Chicken Noodles"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -1940,7 +2491,7 @@ footer{
                     </div>
 
                     <div class="menu-description">
-                        Delicious noodles with juicy chicken pieces.
+                        Delicious noodles with chicken pieces.
                     </div>
 
                 </div>
@@ -1952,19 +2503,19 @@ footer{
             </div>
 
 
-            <!-- 06 VEG FRIED RICE -->
+            <!-- FRIED RICE -->
 
             <div
-                class="menu-card reveal"
-                data-category="rice">
+            class="menu-card reveal"
+            data-category="rice">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90"
-                        alt="Veg Fried Rice"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90"
+                    alt="Veg Fried Rice"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -1979,7 +2530,7 @@ footer{
                     </div>
 
                     <div class="menu-description">
-                        Classic fried rice packed with vegetables.
+                        Classic fried rice with vegetables.
                     </div>
 
                 </div>
@@ -1991,19 +2542,17 @@ footer{
             </div>
 
 
-            <!-- 07 GOBI FRIED RICE -->
-
             <div
-                class="menu-card reveal"
-                data-category="rice">
+            class="menu-card reveal"
+            data-category="rice">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90"
-                        alt="Gobi Fried Rice"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90"
+                    alt="Gobi Fried Rice"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -2018,7 +2567,7 @@ footer{
                     </div>
 
                     <div class="menu-description">
-                        Fried rice combined with crispy gobi flavours.
+                        Fried rice with delicious gobi flavours.
                     </div>
 
                 </div>
@@ -2030,19 +2579,17 @@ footer{
             </div>
 
 
-            <!-- 08 CHICKEN FRIED RICE -->
-
             <div
-                class="menu-card reveal"
-                data-category="rice">
+            class="menu-card reveal"
+            data-category="rice">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90"
-                        alt="Chicken Fried Rice"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90"
+                    alt="Chicken Fried Rice"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -2069,19 +2616,19 @@ footer{
             </div>
 
 
-            <!-- 09 VEG MANCHURIAN -->
+            <!-- STARTERS -->
 
             <div
-                class="menu-card reveal"
-                data-category="starter">
+            class="menu-card reveal"
+            data-category="starter">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=700&q=90"
-                        alt="Veg Manchurian"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=700&q=90"
+                    alt="Veg Manchurian"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -2096,7 +2643,7 @@ footer{
                     </div>
 
                     <div class="menu-description">
-                        Crispy vegetable balls in a flavourful sauce.
+                        Crispy vegetable balls in rich sauce.
                     </div>
 
                 </div>
@@ -2108,19 +2655,17 @@ footer{
             </div>
 
 
-            <!-- 10 CHICKEN MANCHURIAN -->
-
             <div
-                class="menu-card reveal"
-                data-category="starter">
+            class="menu-card reveal"
+            data-category="starter">
 
                 <div class="menu-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=90"
-                        alt="Chicken Manchurian"
-                        loading="lazy"
-                        onerror="this.src='https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=700&q=90';">
+                    src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=90"
+                    alt="Chicken Manchurian"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=700&q=90';">
 
                 </div>
 
@@ -2154,11 +2699,13 @@ footer{
 </section>
 
 
-<!-- =====================================
+<!-- =====================================================
      ORDER
-===================================== -->
+===================================================== -->
 
-<section class="order" id="order">
+<section
+class="order"
+id="order">
 
     <div class="container">
 
@@ -2169,13 +2716,20 @@ footer{
             </div>
 
             <h2 class="section-title">
+
                 Your Food.
-                <span>Your Way.</span>
+                <span>
+                    Your Way.
+                </span>
+
             </h2>
 
             <p class="section-text">
-                Choose your favourite way to order from
-                Tasty & Quality Noodles and Biriyani Spot.
+
+                Choose your favourite way to order
+                from Tasty & Quality Noodles
+                and Biriyani Spot.
+
             </p>
 
         </div>
@@ -2199,10 +2753,12 @@ footer{
                 </p>
 
                 <a
-                    href="https://share.google/EI2Zk1irz6ricr0BL"
-                    target="_blank"
-                    class="btn btn-gold">
+                href="https://share.google/EI2Zk1irz6ricr0BL"
+                target="_blank"
+                class="btn btn-gold">
+
                     Order on Swiggy
+
                 </a>
 
             </div>
@@ -2223,10 +2779,12 @@ footer{
                 </p>
 
                 <a
-                    href="https://share.google/wYvc5NZs6gGQPEDO0"
-                    target="_blank"
-                    class="btn btn-gold">
+                href="https://share.google/wYvc5NZs6gGQPEDO0"
+                target="_blank"
+                class="btn btn-gold">
+
                     Order on Zomato
+
                 </a>
 
             </div>
@@ -2247,10 +2805,12 @@ footer{
                 </p>
 
                 <a
-                    href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
-                    target="_blank"
-                    class="btn btn-gold">
+                href="https://wa.me/919121919181?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
+                target="_blank"
+                class="btn btn-gold">
+
                     WhatsApp Us
+
                 </a>
 
             </div>
@@ -2263,11 +2823,13 @@ footer{
 </section>
 
 
-<!-- =====================================
+<!-- =====================================================
      LOCATION
-===================================== -->
+===================================================== -->
 
-<section class="section" id="location">
+<section
+class="section"
+id="location">
 
     <div class="container">
 
@@ -2281,8 +2843,12 @@ footer{
                 </div>
 
                 <h2 class="section-title">
+
                     Find
-                    <span>Us.</span>
+                    <span>
+                        Us.
+                    </span>
+
                 </h2>
 
 
@@ -2293,9 +2859,11 @@ footer{
                     </div>
 
                     <div class="contact-value">
-                        Ashok Nagar, Gudur,<br>
-                        West Gudur Rural,<br>
-                        Andhra Pradesh 524101
+
+                        Vivekananda Road,<br>
+                        Gudur,<br>
+                        Andhra Pradesh
+
                     </div>
 
                 </div>
@@ -2307,8 +2875,10 @@ footer{
                         Phone
                     </div>
 
-                    <div class="contact-value">
-                        +91 93936 32393
+                    <div class="contact-value contact-phone">
+
+                        +91 91219 19181
+
                     </div>
 
                 </div>
@@ -2321,18 +2891,24 @@ footer{
                     </div>
 
                     <div class="contact-value">
+
                         Open until 11:00 PM
+
                     </div>
 
                 </div>
 
 
+                <!-- EXACT LOCATION LINK -->
+
                 <a
-                    href="https://www.google.com/maps/search/?api=1&query=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh"
-                    target="_blank"
-                    class="btn btn-gold"
-                    style="margin-top:25px;">
+                href="https://share.google/Njpvw1VWX0wxfY0jC"
+                target="_blank"
+                class="btn btn-gold"
+                style="margin-top:23px;">
+
                     Get Directions
+
                 </a>
 
             </div>
@@ -2341,8 +2917,9 @@ footer{
             <div class="map-box reveal">
 
                 <iframe
-                    src="https://www.google.com/maps?q=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh&output=embed"
-                    loading="lazy">
+                src="https://www.google.com/maps?q=Vivekananda%20Road%2C%20Gudur%2C%20Andhra%20Pradesh&output=embed"
+                loading="lazy"
+                allowfullscreen>
                 </iframe>
 
             </div>
@@ -2355,9 +2932,9 @@ footer{
 </section>
 
 
-<!-- =====================================
+<!-- =====================================================
      FINAL CTA
-===================================== -->
+===================================================== -->
 
 <section class="final-cta">
 
@@ -2371,21 +2948,34 @@ footer{
                 Tasty & Quality
             </div>
 
+
             <h2 class="section-title">
+
                 Come Hungry.
-                <span>Leave Happy.</span>
+
+                <span>
+                    Leave Happy.
+                </span>
+
             </h2>
 
+
             <p>
+
                 Great food doesn't need an occasion.
-                Sometimes, all you need is a plate of perfectly prepared
-                biriyani or your favourite noodles.
+                Sometimes all you need is a plate
+                of perfectly prepared biriyani,
+                noodles or your favourite starter.
+
             </p>
 
+
             <a
-                href="#order"
-                class="btn btn-gold">
+            href="#order"
+            class="btn btn-gold">
+
                 Order Your Favourite
+
             </a>
 
         </div>
@@ -2395,9 +2985,9 @@ footer{
 </section>
 
 
-<!-- =====================================
+<!-- =====================================================
      FOOTER
-===================================== -->
+===================================================== -->
 
 <footer>
 
@@ -2405,16 +2995,30 @@ footer{
 
         <div class="footer-inner">
 
-            <div class="footer-copy">
-                © <span id="year"></span>
-                Tasty & Quality Noodles and Biriyani Spot.
-                All Rights Reserved.
-            </div>
 
             <div class="footer-copy">
-                Designed by
-                <strong>RAHULCHAKRI KASUKURTHI</strong>
+
+                ©
+                <span id="year"></span>
+
+                Tasty & Quality
+                Noodles & Biriyani Spot.
+
+                All Rights Reserved.
+
             </div>
+
+
+            <div class="footer-copy">
+
+                Designed by
+
+                <strong>
+                    RAHULCHAKRI
+                </strong>
+
+            </div>
+
 
             <div class="footer-links">
 
@@ -2426,11 +3030,12 @@ footer{
                     Menu
                 </a>
 
-                <a href="#order">
-                    Order
+                <a href="#location">
+                    Location
                 </a>
 
             </div>
+
 
         </div>
 
@@ -2439,24 +3044,31 @@ footer{
 </footer>
 
 
-<!-- =====================================
+<!-- =====================================================
      WHATSAPP
-===================================== -->
+===================================================== -->
 
 <a
-    href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
-    target="_blank"
-    class="whatsapp"
-    aria-label="WhatsApp">
+href="https://wa.me/919121919181?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
+target="_blank"
+class="whatsapp"
+aria-label="WhatsApp">
+
     ☎
+
 </a>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
 
-/* =====================================
+
+/* =====================================================
    LOADER
-===================================== */
+===================================================== */
 
 window.addEventListener("load",function(){
 
@@ -2472,9 +3084,9 @@ window.addEventListener("load",function(){
 });
 
 
-/* =====================================
+/* =====================================================
    NAVBAR
-===================================== */
+===================================================== */
 
 const navbar =
 document.getElementById("navbar");
@@ -2494,15 +3106,16 @@ window.addEventListener("scroll",function(){
 });
 
 
-/* =====================================
+/* =====================================================
    MOBILE MENU
-===================================== */
+===================================================== */
 
 const menuToggle =
 document.getElementById("menuToggle");
 
 const navLinks =
 document.getElementById("navLinks");
+
 
 menuToggle.addEventListener("click",function(){
 
@@ -2524,15 +3137,16 @@ document
 });
 
 
-/* =====================================
+/* =====================================================
    MENU FILTER
-===================================== */
+===================================================== */
 
 const filters =
 document.querySelectorAll(".filter");
 
 const menuCards =
 document.querySelectorAll(".menu-card");
+
 
 filters.forEach(function(filter){
 
@@ -2546,13 +3160,16 @@ filters.forEach(function(filter){
 
         filter.classList.add("active");
 
+
         const selected =
         filter.dataset.filter;
+
 
         menuCards.forEach(function(card){
 
             const category =
             card.dataset.category;
+
 
             if(
                 selected === "all" ||
@@ -2574,39 +3191,49 @@ filters.forEach(function(filter){
 });
 
 
-/* =====================================
+/* =====================================================
    YEAR
-===================================== */
+===================================================== */
 
-document.getElementById("year").textContent =
+document
+.getElementById("year")
+.textContent =
 new Date().getFullYear();
 
 
-/* =====================================
+/* =====================================================
    SCROLL REVEAL
-===================================== */
+===================================================== */
 
 const revealElements =
 document.querySelectorAll(".reveal");
 
+
 const observer =
 new IntersectionObserver(
-function(entries){
 
-    entries.forEach(function(entry){
+    function(entries){
 
-        if(entry.isIntersecting){
+        entries.forEach(function(entry){
 
-            entry.target.classList.add("show");
+            if(entry.isIntersecting){
 
-        }
+                entry
+                .target
+                .classList
+                .add("show");
 
-    });
+            }
 
-},
-{
-    threshold:.12
-});
+        });
+
+    },
+
+    {
+        threshold:.12
+    }
+
+);
 
 
 revealElements.forEach(function(element){
@@ -2616,56 +3243,65 @@ revealElements.forEach(function(element){
 });
 
 
-/* =====================================
-   IMAGE ERROR FALLBACK
-===================================== */
+/* =====================================================
+   IMAGE FALLBACK
+===================================================== */
 
 document
 .querySelectorAll("img")
 .forEach(function(image){
 
-    image.addEventListener("error",function(){
+    image.addEventListener(
+        "error",
+        function(){
 
-        if(!this.dataset.failed){
+            if(!this.dataset.failed){
 
-            this.dataset.failed="true";
+                this.dataset.failed="true";
 
-            this.src =
-            "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=900&q=85";
+                this.src =
+                "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=85";
+
+            }
 
         }
-
-    });
+    );
 
 });
 
 
-/* =====================================
-   HERO PARALLAX
-===================================== */
+/* =====================================================
+   HERO MOUSE MOVEMENT
+===================================================== */
 
 const heroFood =
 document.querySelector(".hero-food");
 
-window.addEventListener("mousemove",function(e){
 
-    if(window.innerWidth < 950){
-        return;
+window.addEventListener(
+    "mousemove",
+    function(event){
+
+        if(window.innerWidth < 950){
+            return;
+        }
+
+        const x =
+        (window.innerWidth / 2 - event.clientX) / 90;
+
+        const y =
+        (window.innerHeight / 2 - event.clientY) / 90;
+
+
+        heroFood.style.marginLeft =
+        x + "px";
+
+        heroFood.style.marginTop =
+        y + "px";
+
     }
+);
 
-    const x =
-    (window.innerWidth / 2 - e.clientX) / 70;
-
-    const y =
-    (window.innerHeight / 2 - e.clientY) / 70;
-
-    heroFood.style.marginLeft =
-    x + "px";
-
-    heroFood.style.marginTop =
-    y + "px";
-
-});
 
 </script>
 
