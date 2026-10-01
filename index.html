@@ -6,7 +6,7 @@
 
 <title>Tasty & Quality — Noodles & Biriyani Spot</title>
 
-<meta name="description" content="Tasty & Quality Noodles and Biriyani Spot - Gudur">
+<meta name="description" content="Tasty & Quality Noodles and Biriyani Spot, Gudur. Biriyani, noodles, fried rice and starters.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,11 +19,11 @@
     --black:#050505;
     --black2:#0b0b0b;
     --gold:#d4af37;
-    --gold2:#f8df7b;
-    --gold3:#9d7618;
+    --gold-light:#f7df82;
+    --gold-dark:#987016;
     --white:#fff;
     --muted:#999;
-    --line:rgba(212,175,55,.2);
+    --border:rgba(212,175,55,.20);
 }
 
 *{
@@ -38,45 +38,38 @@ html{
 
 body{
     background:#050505;
-    color:white;
+    color:#fff;
     font-family:"DM Sans",sans-serif;
     overflow-x:hidden;
 }
 
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:9999;
-    opacity:.025;
-    background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+img{
+    display:block;
+    max-width:100%;
 }
 
 a{
-    color:inherit;
     text-decoration:none;
+    color:inherit;
 }
 
-img{
-    max-width:100%;
-    display:block;
+button{
+    font-family:inherit;
 }
 
-/* =========================
+/* =====================================
    LOADER
-========================= */
+===================================== */
 
 .loader{
     position:fixed;
     inset:0;
-    z-index:10000;
+    z-index:99999;
+    background:#030303;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#030303;
-    transition:.7s;
+    transition:.7s ease;
 }
 
 .loader.hide{
@@ -84,43 +77,49 @@ img{
     visibility:hidden;
 }
 
+.loader-inner{
+    text-align:center;
+}
+
 .loader-logo{
-    width:85px;
-    height:85px;
-    border-radius:50%;
+    width:82px;
+    height:82px;
     border:1px solid var(--gold);
+    border-radius:50%;
     display:flex;
-    justify-content:center;
     align-items:center;
-    box-shadow:0 0 35px rgba(212,175,55,.25);
-    animation:pulse 1.5s infinite;
+    justify-content:center;
+    margin:auto;
+    box-shadow:
+        0 0 25px rgba(212,175,55,.2),
+        inset 0 0 25px rgba(212,175,55,.08);
+    animation:loaderPulse 1.6s infinite;
 }
 
 .loader-logo span{
-    color:var(--gold2);
     font-family:"Playfair Display",serif;
-    font-size:28px;
+    color:var(--gold-light);
+    font-size:27px;
 }
 
 .loader-text{
-    margin-top:18px;
-    text-align:center;
-    color:var(--gold2);
+    margin-top:17px;
+    color:var(--gold-light);
+    font-size:9px;
     letter-spacing:5px;
-    font-size:10px;
     text-transform:uppercase;
 }
 
-@keyframes pulse{
+@keyframes loaderPulse{
     50%{
         transform:scale(1.06);
-        box-shadow:0 0 60px rgba(212,175,55,.35);
+        box-shadow:0 0 45px rgba(212,175,55,.35);
     }
 }
 
-/* =========================
+/* =====================================
    NAVBAR
-========================= */
+===================================== */
 
 .navbar{
     position:fixed;
@@ -129,14 +128,14 @@ img{
     right:0;
     z-index:5000;
     padding:18px 0;
-    transition:.3s;
+    transition:.35s ease;
 }
 
 .navbar.scrolled{
-    background:rgba(4,4,4,.82);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--line);
     padding:11px 0;
+    background:rgba(4,4,4,.84);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
 }
 
 .nav{
@@ -157,15 +156,15 @@ img{
 .logo-mark{
     width:43px;
     height:43px;
-    border:1px solid var(--gold);
     border-radius:50%;
+    border:1px solid var(--gold);
     display:flex;
     align-items:center;
     justify-content:center;
-    color:var(--gold2);
+    color:var(--gold-light);
     font-family:"Playfair Display",serif;
-    font-size:17px;
-    box-shadow:0 0 20px rgba(212,175,55,.15);
+    font-weight:700;
+    box-shadow:0 0 20px rgba(212,175,55,.14);
 }
 
 .logo-text strong{
@@ -176,16 +175,16 @@ img{
 
 .logo-text span{
     display:block;
+    margin-top:3px;
     color:var(--gold);
     font-size:8px;
     letter-spacing:3px;
-    margin-top:3px;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:30px;
+    gap:29px;
 }
 
 .nav-links a{
@@ -194,18 +193,18 @@ img{
     font-weight:700;
     letter-spacing:1px;
     text-transform:uppercase;
-    transition:.3s;
+    transition:.25s;
 }
 
 .nav-links a:hover{
-    color:var(--gold2);
+    color:var(--gold-light);
 }
 
 .nav-order{
     border:1px solid var(--gold);
-    padding:11px 17px;
     border-radius:30px;
-    color:var(--gold2)!important;
+    padding:11px 17px;
+    color:var(--gold-light)!important;
 }
 
 .nav-order:hover{
@@ -215,15 +214,16 @@ img{
 
 .menu-toggle{
     display:none;
-    background:none;
     border:0;
-    color:white;
+    background:none;
+    color:#fff;
     font-size:27px;
+    cursor:pointer;
 }
 
-/* =========================
+/* =====================================
    HERO
-========================= */
+===================================== */
 
 .hero{
     min-height:100vh;
@@ -231,34 +231,37 @@ img{
     overflow:hidden;
     display:flex;
     align-items:center;
+    padding:120px 0 70px;
 
     background:
-    linear-gradient(
-        90deg,
-        rgba(0,0,0,.95) 0%,
-        rgba(0,0,0,.82) 35%,
-        rgba(0,0,0,.45) 70%,
-        rgba(0,0,0,.25) 100%
-    ),
-    url("https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=2200&q=90")
-    center/cover;
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.96) 0%,
+            rgba(0,0,0,.84) 36%,
+            rgba(0,0,0,.52) 68%,
+            rgba(0,0,0,.25) 100%
+        ),
+        url("https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=2200&q=90")
+        center/cover;
 }
 
 .hero:after{
     content:"";
     position:absolute;
     inset:0;
+    pointer-events:none;
+
     background:
-    radial-gradient(
-        circle at 78% 50%,
-        rgba(212,175,55,.18),
-        transparent 25%
-    ),
-    linear-gradient(
-        180deg,
-        transparent 65%,
-        #050505 100%
-    );
+        radial-gradient(
+            circle at 78% 50%,
+            rgba(212,175,55,.18),
+            transparent 27%
+        ),
+        linear-gradient(
+            180deg,
+            transparent 62%,
+            #050505 100%
+        );
 }
 
 .container{
@@ -268,13 +271,14 @@ img{
 
 .hero-content{
     position:relative;
-    z-index:3;
+    z-index:5;
     max-width:650px;
 }
 
 .hero-kicker{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-size:10px;
+    font-weight:700;
     letter-spacing:5px;
     text-transform:uppercase;
     margin-bottom:20px;
@@ -282,14 +286,14 @@ img{
 
 .hero h1{
     font-family:"Playfair Display",serif;
-    font-size:clamp(50px,7vw,90px);
-    line-height:.92;
+    font-size:clamp(50px,7vw,88px);
+    line-height:.94;
     letter-spacing:-3px;
 }
 
 .hero h1 span{
     display:block;
-    color:var(--gold2);
+    color:var(--gold-light);
 }
 
 .hero-description{
@@ -311,25 +315,24 @@ img{
     align-items:center;
     justify-content:center;
     padding:14px 22px;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    transition:.3s;
-    cursor:pointer;
     border-radius:2px;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    transition:.3s ease;
 }
 
 .btn-gold{
     color:#050505;
     background:
-    linear-gradient(
-        135deg,
-        #fff1a9,
-        #d4af37,
-        #9b7215
-    );
-    box-shadow:0 10px 30px rgba(212,175,55,.2);
+        linear-gradient(
+            135deg,
+            #fff2a9,
+            var(--gold),
+            var(--gold-dark)
+        );
+    box-shadow:0 10px 30px rgba(212,175,55,.22);
 }
 
 .btn-gold:hover{
@@ -338,18 +341,19 @@ img{
 }
 
 .btn-outline{
-    color:white;
     border:1px solid rgba(255,255,255,.3);
+    color:#fff;
     background:rgba(255,255,255,.04);
 }
 
 .btn-outline:hover{
-    color:var(--gold2);
     border-color:var(--gold);
+    color:var(--gold-light);
+    transform:translateY(-3px);
 }
 
 .hero-badge{
-    margin-top:27px;
+    margin-top:26px;
     color:#999;
     font-size:9px;
     letter-spacing:2px;
@@ -364,32 +368,35 @@ img{
     margin-right:10px;
 }
 
-/* HERO IMAGE CIRCLE */
+/* =====================================
+   HERO FOOD IMAGE
+===================================== */
 
 .hero-food{
     position:absolute;
+    z-index:3;
     right:4%;
     top:50%;
     transform:translateY(-50%);
-    width:480px;
-    height:480px;
+    width:475px;
+    height:475px;
     border-radius:50%;
-    z-index:2;
     overflow:hidden;
 
-    border:8px solid rgba(212,175,55,.55);
+    border:8px solid rgba(212,175,55,.52);
 
     box-shadow:
-    0 0 0 12px rgba(255,255,255,.025),
-    0 0 0 14px rgba(212,175,55,.18),
-    0 30px 100px rgba(0,0,0,.8),
-    0 0 80px rgba(212,175,55,.18);
+        0 0 0 13px rgba(255,255,255,.025),
+        0 0 0 15px rgba(212,175,55,.15),
+        0 35px 100px rgba(0,0,0,.8),
+        0 0 80px rgba(212,175,55,.16);
 }
 
 .hero-food img{
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position:center;
     filter:saturate(1.15) contrast(1.08);
 }
 
@@ -398,38 +405,37 @@ img{
     position:absolute;
     inset:0;
     background:
-    radial-gradient(
-        circle,
-        transparent 30%,
-        rgba(0,0,0,.15) 55%,
-        rgba(0,0,0,.65) 100%
-    );
+        radial-gradient(
+            circle,
+            transparent 28%,
+            rgba(0,0,0,.15) 58%,
+            rgba(0,0,0,.65) 100%
+        );
 }
 
-.hero-food-ring{
+.hero-ring{
     position:absolute;
-    z-index:3;
-    inset:-23px;
-    border:1px solid rgba(212,175,55,.4);
+    inset:-24px;
     border-radius:50%;
+    border:1px solid rgba(212,175,55,.35);
     pointer-events:none;
 }
 
-/* =========================
+/* =====================================
    GOLD STRIP
-========================= */
+===================================== */
 
 .gold-strip{
     padding:17px 0;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
     background:rgba(212,175,55,.045);
 }
 
 .strip-inner{
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     flex-wrap:wrap;
     gap:20px;
     color:#aaa;
@@ -442,9 +448,9 @@ img{
     color:var(--gold);
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* =====================================
+   COMMON SECTION
+===================================== */
 
 .section{
     padding:110px 0;
@@ -466,32 +472,32 @@ img{
 }
 
 .section-title span{
-    color:var(--gold2);
+    color:var(--gold-light);
 }
 
 .section-text{
     color:#999;
-    line-height:1.8;
     font-size:13px;
+    line-height:1.85;
 }
 
-/* =========================
+/* =====================================
    ABOUT
-========================= */
+===================================== */
 
 .about{
     background:
-    radial-gradient(
-        circle at 10% 40%,
-        rgba(212,175,55,.06),
-        transparent 30%
-    );
+        radial-gradient(
+            circle at 10% 40%,
+            rgba(212,175,55,.06),
+            transparent 30%
+        );
 }
 
 .about-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:80px;
+    gap:75px;
     align-items:center;
 }
 
@@ -508,14 +514,16 @@ img{
 }
 
 .feature{
+    position:relative;
     padding:22px;
+    overflow:hidden;
     border:1px solid rgba(212,175,55,.14);
     background:
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.05),
-        rgba(255,255,255,.015)
-    );
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.05),
+            rgba(255,255,255,.015)
+        );
     transition:.35s;
 }
 
@@ -526,9 +534,9 @@ img{
 }
 
 .feature-icon{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-size:20px;
-    margin-bottom:13px;
+    margin-bottom:12px;
 }
 
 .feature h3{
@@ -543,27 +551,31 @@ img{
     line-height:1.7;
 }
 
-/* ABOUT IMAGE */
+/* =====================================
+   ABOUT IMAGE
+===================================== */
 
 .about-visual{
+    min-height:510px;
     position:relative;
-    min-height:500px;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
 }
 
 .about-image{
     width:390px;
     height:470px;
     object-fit:cover;
-    border:1px solid rgba(212,175,55,.4);
+    object-position:center;
+    border:1px solid rgba(212,175,55,.38);
+
     box-shadow:
-    0 30px 80px rgba(0,0,0,.7),
-    0 0 50px rgba(212,175,55,.08);
+        0 30px 80px rgba(0,0,0,.7),
+        0 0 50px rgba(212,175,55,.08);
 }
 
-.about-image-frame{
+.about-frame{
     position:absolute;
     width:420px;
     height:500px;
@@ -574,11 +586,11 @@ img{
 
 .about-badge{
     position:absolute;
-    bottom:20px;
+    bottom:18px;
     left:20px;
-    padding:25px;
-    width:220px;
-    background:rgba(5,5,5,.85);
+    width:230px;
+    padding:24px;
+    background:rgba(5,5,5,.88);
     backdrop-filter:blur(15px);
     border:1px solid rgba(212,175,55,.35);
 }
@@ -590,10 +602,10 @@ img{
 }
 
 .about-badge h3{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-family:"Playfair Display",serif;
     font-size:30px;
-    margin:8px 0;
+    margin:7px 0;
 }
 
 .about-badge p{
@@ -602,18 +614,18 @@ img{
     line-height:1.6;
 }
 
-/* =========================
+/* =====================================
    SIGNATURE
-========================= */
+===================================== */
 
 .signature{
     background:
-    linear-gradient(
-        90deg,
-        #080808,
-        #11100a,
-        #080808
-    );
+        linear-gradient(
+            90deg,
+            #080808,
+            #11100a,
+            #080808
+        );
     border-top:1px solid rgba(212,175,55,.1);
     border-bottom:1px solid rgba(212,175,55,.1);
 }
@@ -647,25 +659,25 @@ img{
     position:absolute;
     inset:0;
     background:
-    linear-gradient(
-        180deg,
-        rgba(0,0,0,.05),
-        rgba(0,0,0,.7)
-    );
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.75)
+        );
 }
 
 .signature-label{
     position:absolute;
     bottom:25px;
     left:25px;
-    color:var(--gold2);
+    color:var(--gold-light);
     font-size:9px;
     letter-spacing:5px;
 }
 
 .signature-content .section-text{
-    margin-top:22px;
     max-width:500px;
+    margin-top:22px;
 }
 
 .signature-points{
@@ -684,23 +696,23 @@ img{
     margin-right:9px;
 }
 
-/* =========================
+/* =====================================
    MENU
-========================= */
+===================================== */
 
 .menu-section{
     background:
-    radial-gradient(
-        circle at 90% 20%,
-        rgba(212,175,55,.06),
-        transparent 30%
-    );
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(212,175,55,.06),
+            transparent 30%
+        );
 }
 
 .menu-header{
     display:flex;
-    justify-content:space-between;
     align-items:end;
+    justify-content:space-between;
     gap:25px;
     margin-bottom:40px;
 }
@@ -713,18 +725,19 @@ img{
 
 .filter{
     padding:9px 13px;
-    background:transparent;
     border:1px solid rgba(255,255,255,.12);
+    background:transparent;
     color:#999;
     font-size:8px;
     letter-spacing:1px;
     text-transform:uppercase;
     cursor:pointer;
+    transition:.25s;
 }
 
 .filter.active,
 .filter:hover{
-    color:var(--gold2);
+    color:var(--gold-light);
     border-color:var(--gold);
     background:rgba(212,175,55,.06);
 }
@@ -736,18 +749,18 @@ img{
 }
 
 .menu-card{
+    min-height:125px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    padding:20px;
+    gap:17px;
     border:1px solid rgba(212,175,55,.12);
     background:
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.045),
-        rgba(255,255,255,.012)
-    );
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
+        );
+    overflow:hidden;
     transition:.35s;
 }
 
@@ -757,7 +770,27 @@ img{
     box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
+.menu-image{
+    width:145px;
+    min-width:145px;
+    height:125px;
+    overflow:hidden;
+}
+
+.menu-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.menu-card:hover .menu-image img{
+    transform:scale(1.08);
+}
+
 .menu-info{
+    flex:1;
+    padding:16px 0;
     min-width:0;
 }
 
@@ -777,63 +810,43 @@ img{
 .menu-description{
     color:#777;
     font-size:8px;
+    line-height:1.5;
     margin-top:5px;
 }
 
 .menu-price{
-    color:var(--gold2);
+    color:var(--gold-light);
     font-family:"Playfair Display",serif;
     font-size:17px;
     white-space:nowrap;
+    padding-right:20px;
 }
 
 .menu-card.hide{
     display:none;
 }
 
-/* MENU IMAGE CARD */
-
-.menu-card-image{
-    padding:0;
-    overflow:hidden;
-    min-height:125px;
-}
-
-.menu-card-image img{
-    width:145px;
-    height:125px;
-    object-fit:cover;
-}
-
-.menu-card-image .menu-info{
-    padding:18px 0 18px 0;
-}
-
-.menu-card-image .menu-price{
-    margin-right:20px;
-}
-
-/* =========================
+/* =====================================
    ORDER
-========================= */
+===================================== */
 
 .order{
     padding:90px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
     background:
-    linear-gradient(
-        90deg,
-        rgba(212,175,55,.05),
-        transparent,
-        rgba(212,175,55,.05)
-    );
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
+        linear-gradient(
+            90deg,
+            rgba(212,175,55,.05),
+            transparent,
+            rgba(212,175,55,.05)
+        );
 }
 
 .order-head{
-    text-align:center;
     max-width:700px;
     margin:auto;
+    text-align:center;
 }
 
 .order-head .section-text{
@@ -876,9 +889,9 @@ img{
     margin:8px 0 18px;
 }
 
-/* =========================
+/* =====================================
    LOCATION
-========================= */
+===================================== */
 
 .location-grid{
     display:grid;
@@ -890,11 +903,11 @@ img{
     padding:38px;
     border:1px solid rgba(212,175,55,.18);
     background:
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.045),
-        rgba(255,255,255,.01)
-    );
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.01)
+        );
 }
 
 .contact-item{
@@ -929,21 +942,21 @@ img{
     border:0;
 }
 
-/* =========================
+/* =====================================
    CTA
-========================= */
+===================================== */
 
 .final-cta{
     position:relative;
     overflow:hidden;
-    text-align:center;
     padding:130px 0;
+    text-align:center;
     background:
-    radial-gradient(
-        circle at center,
-        rgba(212,175,55,.13),
-        transparent 40%
-    );
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,.13),
+            transparent 40%
+        );
 }
 
 .cta-ring{
@@ -986,14 +999,14 @@ img{
     line-height:1.8;
 }
 
-/* =========================
+/* =====================================
    FOOTER
-========================= */
+===================================== */
 
 footer{
     padding:32px 0;
-    border-top:1px solid rgba(212,175,55,.12);
     background:#030303;
+    border-top:1px solid rgba(212,175,55,.12);
 }
 
 .footer-inner{
@@ -1009,7 +1022,7 @@ footer{
 }
 
 .footer-copy strong{
-    color:var(--gold2);
+    color:var(--gold-light);
 }
 
 .footer-links{
@@ -1026,9 +1039,9 @@ footer{
     color:var(--gold);
 }
 
-/* =========================
+/* =====================================
    WHATSAPP
-========================= */
+===================================== */
 
 .whatsapp{
     position:fixed;
@@ -1038,13 +1051,13 @@ footer{
     width:53px;
     height:53px;
     border-radius:50%;
+    background:#25D366;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#25D366;
-    color:white;
-    font-size:23px;
-    box-shadow:0 10px 35px rgba(0,0,0,.5);
+    color:#fff;
+    font-size:22px;
+    box-shadow:0 10px 35px rgba(0,0,0,.55);
     transition:.3s;
 }
 
@@ -1052,9 +1065,9 @@ footer{
     transform:scale(1.08) translateY(-4px);
 }
 
-/* =========================
+/* =====================================
    REVEAL
-========================= */
+===================================== */
 
 .reveal{
     opacity:0;
@@ -1067,9 +1080,9 @@ footer{
     transform:translateY(0);
 }
 
-/* =========================
+/* =====================================
    RESPONSIVE
-========================= */
+===================================== */
 
 @media(max-width:950px){
 
@@ -1081,7 +1094,7 @@ footer{
         padding:20px;
         background:rgba(5,5,5,.97);
         backdrop-filter:blur(20px);
-        border:1px solid var(--line);
+        border:1px solid var(--border);
         display:none;
         flex-direction:column;
         gap:0;
@@ -1102,15 +1115,16 @@ footer{
 
     .hero{
         min-height:900px;
+
         background:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.9),
-            rgba(0,0,0,.65),
-            rgba(0,0,0,.95)
-        ),
-        url("https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1800&q=90")
-        center/cover;
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,.91),
+                rgba(0,0,0,.66),
+                rgba(0,0,0,.96)
+            ),
+            url("https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1800&q=90")
+            center/cover;
     }
 
     .hero-content{
@@ -1121,10 +1135,9 @@ footer{
         width:370px;
         height:370px;
         top:auto;
-        bottom:35px;
         right:50%;
+        bottom:30px;
         transform:translateX(50%);
-        opacity:.8;
     }
 
     .about-grid,
@@ -1149,12 +1162,26 @@ footer{
         width:90%;
     }
 
+    .navbar{
+        padding:14px 0;
+    }
+
+    .logo-text strong{
+        font-size:11px;
+    }
+
+    .logo-mark{
+        width:39px;
+        height:39px;
+    }
+
     .hero{
         min-height:850px;
     }
 
     .hero h1{
         font-size:49px;
+        letter-spacing:-2px;
     }
 
     .hero-description{
@@ -1170,8 +1197,9 @@ footer{
     }
 
     .hero-food{
-        width:310px;
-        height:310px;
+        width:305px;
+        height:305px;
+        bottom:35px;
     }
 
     .section{
@@ -1191,9 +1219,15 @@ footer{
         height:400px;
     }
 
-    .about-image-frame{
+    .about-frame{
         width:325px;
         height:425px;
+    }
+
+    .about-badge{
+        width:210px;
+        bottom:10px;
+        left:10px;
     }
 
     .signature-visual{
@@ -1204,21 +1238,27 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .menu-card-image img{
-        width:110px;
-        height:115px;
+    .menu-card{
+        min-height:115px;
     }
 
-    .menu-card-image .menu-info{
-        padding:15px 0;
+    .menu-image{
+        width:105px;
+        min-width:105px;
+        height:115px;
     }
 
     .menu-name{
         font-size:15px;
     }
 
+    .menu-description{
+        font-size:7px;
+    }
+
     .menu-price{
         font-size:15px;
+        padding-right:13px;
     }
 
     .contact-box{
@@ -1239,7 +1279,6 @@ footer{
         width:430px;
         height:430px;
     }
-
 }
 
 </style>
@@ -1247,11 +1286,14 @@ footer{
 
 <body>
 
-<!-- LOADER -->
+
+<!-- =====================================
+     LOADER
+===================================== -->
 
 <div class="loader" id="loader">
 
-    <div>
+    <div class="loader-inner">
 
         <div class="loader-logo">
             <span>TQ</span>
@@ -1266,7 +1308,9 @@ footer{
 </div>
 
 
-<!-- NAVBAR -->
+<!-- =====================================
+     NAVBAR
+===================================== -->
 
 <header class="navbar" id="navbar">
 
@@ -1295,25 +1339,15 @@ footer{
 
         <div class="nav-links" id="navLinks">
 
-            <a href="#home">
-                Home
-            </a>
+            <a href="#home">Home</a>
 
-            <a href="#about">
-                About
-            </a>
+            <a href="#about">About</a>
 
-            <a href="#menu">
-                Menu
-            </a>
+            <a href="#menu">Menu</a>
 
-            <a href="#order">
-                Order
-            </a>
+            <a href="#order">Order</a>
 
-            <a href="#location">
-                Location
-            </a>
+            <a href="#location">Location</a>
 
             <a href="#order" class="nav-order">
                 Order Now
@@ -1322,7 +1356,9 @@ footer{
         </div>
 
 
-        <button class="menu-toggle" id="menuToggle">
+        <button
+            class="menu-toggle"
+            id="menuToggle">
             ☰
         </button>
 
@@ -1331,7 +1367,9 @@ footer{
 </header>
 
 
-<!-- HERO -->
+<!-- =====================================
+     HERO
+===================================== -->
 
 <section class="hero" id="home">
 
@@ -1355,11 +1393,15 @@ footer{
 
             <div class="hero-buttons">
 
-                <a href="#menu" class="btn btn-gold">
+                <a
+                    href="#menu"
+                    class="btn btn-gold">
                     Explore Menu
                 </a>
 
-                <a href="#order" class="btn btn-outline">
+                <a
+                    href="#order"
+                    class="btn btn-outline">
                     Order Online
                 </a>
 
@@ -1374,22 +1416,24 @@ footer{
     </div>
 
 
-    <!-- HERO BIRIYANI IMAGE -->
-
     <div class="hero-food">
 
         <img
-        src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1200&q=90"
-        alt="Delicious Chicken Biriyani">
+            src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=90"
+            alt="Chicken Biriyani"
+            loading="eager"
+            onerror="this.src='https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1200&q=90';">
 
-        <div class="hero-food-ring"></div>
+        <div class="hero-ring"></div>
 
     </div>
 
 </section>
 
 
-<!-- GOLD STRIP -->
+<!-- =====================================
+     GOLD STRIP
+===================================== -->
 
 <div class="gold-strip">
 
@@ -1414,13 +1458,16 @@ footer{
 </div>
 
 
-<!-- ABOUT -->
+<!-- =====================================
+     ABOUT
+===================================== -->
 
 <section class="section about" id="about">
 
     <div class="container">
 
         <div class="about-grid">
+
 
             <div class="about-copy reveal">
 
@@ -1442,6 +1489,7 @@ footer{
 
 
                 <div class="features">
+
 
                     <div class="feature">
 
@@ -1514,21 +1562,23 @@ footer{
 
                     </div>
 
+
                 </div>
 
             </div>
 
 
-            <!-- ABOUT FOOD IMAGE -->
-
             <div class="about-visual reveal">
 
-                <div class="about-image-frame"></div>
+                <div class="about-frame"></div>
 
                 <img
-                class="about-image"
-                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85"
-                alt="Restaurant food">
+                    class="about-image"
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=90"
+                    alt="Indian food"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=900&q=90';">
+
 
                 <div class="about-badge">
 
@@ -1556,7 +1606,9 @@ footer{
 </section>
 
 
-<!-- SIGNATURE BIRIYANI -->
+<!-- =====================================
+     SIGNATURE BIRIYANI
+===================================== -->
 
 <section class="section signature">
 
@@ -1568,8 +1620,10 @@ footer{
             <div class="signature-visual reveal">
 
                 <img
-                src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=90"
-                alt="Chicken Biryani">
+                    src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1200&q=90"
+                    alt="Signature Chicken Biriyani"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=90';">
 
                 <div class="signature-overlay"></div>
 
@@ -1623,9 +1677,10 @@ footer{
                 </div>
 
 
-                <a href="#menu"
-                class="btn btn-gold"
-                style="margin-top:30px;">
+                <a
+                    href="#menu"
+                    class="btn btn-gold"
+                    style="margin-top:30px;">
                     View Full Menu
                 </a>
 
@@ -1638,7 +1693,9 @@ footer{
 </section>
 
 
-<!-- MENU -->
+<!-- =====================================
+     MENU
+===================================== -->
 
 <section class="section menu-section" id="menu">
 
@@ -1662,23 +1719,33 @@ footer{
 
             <div class="menu-filters">
 
-                <button class="filter active" data-filter="all">
+                <button
+                    class="filter active"
+                    data-filter="all">
                     All
                 </button>
 
-                <button class="filter" data-filter="biriyani">
+                <button
+                    class="filter"
+                    data-filter="biriyani">
                     Biriyani
                 </button>
 
-                <button class="filter" data-filter="noodles">
+                <button
+                    class="filter"
+                    data-filter="noodles">
                     Noodles
                 </button>
 
-                <button class="filter" data-filter="rice">
+                <button
+                    class="filter"
+                    data-filter="rice">
                     Fried Rice
                 </button>
 
-                <button class="filter" data-filter="starter">
+                <button
+                    class="filter"
+                    data-filter="starter">
                     Starters
                 </button>
 
@@ -1690,14 +1757,21 @@ footer{
         <div class="menu-grid">
 
 
-            <!-- BIRIYANI -->
+            <!-- 01 CHICKEN BIRIYANI -->
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="biriyani">
+            <div
+                class="menu-card reveal"
+                data-category="biriyani">
 
-                <img
-                src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=600&q=85"
-                alt="Chicken Dum Biriyani">
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=90"
+                        alt="Chicken Dum Biriyani"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1722,12 +1796,21 @@ footer{
             </div>
 
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="biriyani">
+            <!-- 02 FULL BIRIYANI -->
 
-                <img
-                src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=85"
-                alt="Chicken Dum Biriyani Full">
+            <div
+                class="menu-card reveal"
+                data-category="biriyani">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=700&q=90"
+                        alt="Full Chicken Biriyani"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1752,14 +1835,21 @@ footer{
             </div>
 
 
-            <!-- NOODLES -->
+            <!-- 03 VEG NOODLES -->
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="noodles">
+            <div
+                class="menu-card reveal"
+                data-category="noodles">
 
-                <img
-                src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=85"
-                alt="Veg Noodles">
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=700&q=90"
+                        alt="Veg Noodles"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1784,12 +1874,21 @@ footer{
             </div>
 
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="noodles">
+            <!-- 04 EGG NOODLES -->
 
-                <img
-                src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=85"
-                alt="Egg Noodles">
+            <div
+                class="menu-card reveal"
+                data-category="noodles">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=90"
+                        alt="Egg Noodles"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1814,12 +1913,21 @@ footer{
             </div>
 
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="noodles">
+            <!-- 05 CHICKEN NOODLES -->
 
-                <img
-                src="https://images.unsplash.com/photo-1617622141573-2d48a8f7d5a1?auto=format&fit=crop&w=600&q=85"
-                alt="Chicken Noodles">
+            <div
+                class="menu-card reveal"
+                data-category="noodles">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90"
+                        alt="Chicken Noodles"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1844,14 +1952,21 @@ footer{
             </div>
 
 
-            <!-- FRIED RICE -->
+            <!-- 06 VEG FRIED RICE -->
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="rice">
+            <div
+                class="menu-card reveal"
+                data-category="rice">
 
-                <img
-                src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=85"
-                alt="Veg Fried Rice">
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90"
+                        alt="Veg Fried Rice"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1876,12 +1991,21 @@ footer{
             </div>
 
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="rice">
+            <!-- 07 GOBI FRIED RICE -->
 
-                <img
-                src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=85"
-                alt="Gobi Fried Rice">
+            <div
+                class="menu-card reveal"
+                data-category="rice">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90"
+                        alt="Gobi Fried Rice"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1906,12 +2030,21 @@ footer{
             </div>
 
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="rice">
+            <!-- 08 CHICKEN FRIED RICE -->
 
-                <img
-                src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=85"
-                alt="Chicken Fried Rice">
+            <div
+                class="menu-card reveal"
+                data-category="rice">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=700&q=90"
+                        alt="Chicken Fried Rice"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1936,14 +2069,21 @@ footer{
             </div>
 
 
-            <!-- STARTERS -->
+            <!-- 09 VEG MANCHURIAN -->
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="starter">
+            <div
+                class="menu-card reveal"
+                data-category="starter">
 
-                <img
-                src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=600&q=85"
-                alt="Veg Manchurian">
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=700&q=90"
+                        alt="Veg Manchurian"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1968,12 +2108,21 @@ footer{
             </div>
 
 
-            <div class="menu-card menu-card-image reveal"
-                 data-category="starter">
+            <!-- 10 CHICKEN MANCHURIAN -->
 
-                <img
-                src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85"
-                alt="Chicken Manchurian">
+            <div
+                class="menu-card reveal"
+                data-category="starter">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=90"
+                        alt="Chicken Manchurian"
+                        loading="lazy"
+                        onerror="this.src='https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=700&q=90';">
+
+                </div>
 
                 <div class="menu-info">
 
@@ -1997,6 +2146,7 @@ footer{
 
             </div>
 
+
         </div>
 
     </div>
@@ -2004,7 +2154,9 @@ footer{
 </section>
 
 
-<!-- ORDER -->
+<!-- =====================================
+     ORDER
+===================================== -->
 
 <section class="order" id="order">
 
@@ -2047,9 +2199,9 @@ footer{
                 </p>
 
                 <a
-                href="https://share.google/EI2Zk1irz6ricr0BL"
-                target="_blank"
-                class="btn btn-gold">
+                    href="https://share.google/EI2Zk1irz6ricr0BL"
+                    target="_blank"
+                    class="btn btn-gold">
                     Order on Swiggy
                 </a>
 
@@ -2071,9 +2223,9 @@ footer{
                 </p>
 
                 <a
-                href="https://share.google/wYvc5NZs6gGQPEDO0"
-                target="_blank"
-                class="btn btn-gold">
+                    href="https://share.google/wYvc5NZs6gGQPEDO0"
+                    target="_blank"
+                    class="btn btn-gold">
                     Order on Zomato
                 </a>
 
@@ -2095,13 +2247,14 @@ footer{
                 </p>
 
                 <a
-                href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
-                target="_blank"
-                class="btn btn-gold">
+                    href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
+                    target="_blank"
+                    class="btn btn-gold">
                     WhatsApp Us
                 </a>
 
             </div>
+
 
         </div>
 
@@ -2110,7 +2263,9 @@ footer{
 </section>
 
 
-<!-- LOCATION -->
+<!-- =====================================
+     LOCATION
+===================================== -->
 
 <section class="section" id="location">
 
@@ -2173,10 +2328,10 @@ footer{
 
 
                 <a
-                href="https://www.google.com/maps/search/?api=1&query=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh"
-                target="_blank"
-                class="btn btn-gold"
-                style="margin-top:25px;">
+                    href="https://www.google.com/maps/search/?api=1&query=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh"
+                    target="_blank"
+                    class="btn btn-gold"
+                    style="margin-top:25px;">
                     Get Directions
                 </a>
 
@@ -2186,11 +2341,12 @@ footer{
             <div class="map-box reveal">
 
                 <iframe
-                src="https://www.google.com/maps?q=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh&output=embed"
-                loading="lazy">
+                    src="https://www.google.com/maps?q=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh&output=embed"
+                    loading="lazy">
                 </iframe>
 
             </div>
+
 
         </div>
 
@@ -2199,7 +2355,9 @@ footer{
 </section>
 
 
-<!-- FINAL CTA -->
+<!-- =====================================
+     FINAL CTA
+===================================== -->
 
 <section class="final-cta">
 
@@ -2224,7 +2382,9 @@ footer{
                 biriyani or your favourite noodles.
             </p>
 
-            <a href="#order" class="btn btn-gold">
+            <a
+                href="#order"
+                class="btn btn-gold">
                 Order Your Favourite
             </a>
 
@@ -2235,7 +2395,9 @@ footer{
 </section>
 
 
-<!-- FOOTER -->
+<!-- =====================================
+     FOOTER
+===================================== -->
 
 <footer>
 
@@ -2244,21 +2406,15 @@ footer{
         <div class="footer-inner">
 
             <div class="footer-copy">
-
                 © <span id="year"></span>
                 Tasty & Quality Noodles and Biriyani Spot.
                 All Rights Reserved.
-
             </div>
-
 
             <div class="footer-copy">
-
                 Designed by
                 <strong>RAHULCHAKRI KASUKURTHI</strong>
-
             </div>
-
 
             <div class="footer-links">
 
@@ -2283,22 +2439,24 @@ footer{
 </footer>
 
 
-<!-- WHATSAPP -->
+<!-- =====================================
+     WHATSAPP
+===================================== -->
 
 <a
-href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
-target="_blank"
-class="whatsapp"
-aria-label="WhatsApp">
-
+    href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
+    target="_blank"
+    class="whatsapp"
+    aria-label="WhatsApp">
     ☎
-
 </a>
 
 
 <script>
 
-/* LOADER */
+/* =====================================
+   LOADER
+===================================== */
 
 window.addEventListener("load",function(){
 
@@ -2314,7 +2472,9 @@ window.addEventListener("load",function(){
 });
 
 
-/* NAVBAR */
+/* =====================================
+   NAVBAR
+===================================== */
 
 const navbar =
 document.getElementById("navbar");
@@ -2334,7 +2494,9 @@ window.addEventListener("scroll",function(){
 });
 
 
-/* MOBILE MENU */
+/* =====================================
+   MOBILE MENU
+===================================== */
 
 const menuToggle =
 document.getElementById("menuToggle");
@@ -2362,7 +2524,9 @@ document
 });
 
 
-/* MENU FILTER */
+/* =====================================
+   MENU FILTER
+===================================== */
 
 const filters =
 document.querySelectorAll(".filter");
@@ -2410,13 +2574,17 @@ filters.forEach(function(filter){
 });
 
 
-/* YEAR */
+/* =====================================
+   YEAR
+===================================== */
 
 document.getElementById("year").textContent =
 new Date().getFullYear();
 
 
-/* SCROLL REVEAL */
+/* =====================================
+   SCROLL REVEAL
+===================================== */
 
 const revealElements =
 document.querySelectorAll(".reveal");
@@ -2448,7 +2616,33 @@ revealElements.forEach(function(element){
 });
 
 
-/* HERO PARALLAX */
+/* =====================================
+   IMAGE ERROR FALLBACK
+===================================== */
+
+document
+.querySelectorAll("img")
+.forEach(function(image){
+
+    image.addEventListener("error",function(){
+
+        if(!this.dataset.failed){
+
+            this.dataset.failed="true";
+
+            this.src =
+            "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=900&q=85";
+
+        }
+
+    });
+
+});
+
+
+/* =====================================
+   HERO PARALLAX
+===================================== */
 
 const heroFood =
 document.querySelector(".hero-food");
@@ -2460,10 +2654,10 @@ window.addEventListener("mousemove",function(e){
     }
 
     const x =
-    (window.innerWidth / 2 - e.clientX) / 50;
+    (window.innerWidth / 2 - e.clientX) / 70;
 
     const y =
-    (window.innerHeight / 2 - e.clientY) / 50;
+    (window.innerHeight / 2 - e.clientY) / 70;
 
     heroFood.style.marginLeft =
     x + "px";
