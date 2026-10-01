@@ -1,619 +1,1756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tasty & Quality | Noodles & Biriyani Spot</title>
+<title>Tasty & Quality — Noodles & Biriyani Spot</title>
 
-    <meta name="description"
-          content="Tasty & Quality Noodles and Biriyani Spot, Gudur. Order delicious biriyani, noodles and fried rice.">
+<meta name="description" content="Tasty & Quality Noodles and Biriyani Spot - Premium biriyani, noodles, fried rice and starters in Gudur.">
 
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --black:#050505;
+    --black2:#0b0b0b;
+    --gold:#d4af37;
+    --gold2:#f6df83;
+    --gold3:#a77b14;
+    --cream:#fff8df;
+    --white:#ffffff;
+    --muted:#aaa;
+    --line:rgba(212,175,55,.22);
+    --glass:rgba(255,255,255,.055);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 50% -10%,rgba(212,175,55,.12),transparent 35%),
+        var(--black);
+    color:var(--white);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.035;
+    z-index:9999;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* LOADER */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#030303;
+    z-index:10000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.7s ease;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-inner{
+    text-align:center;
+}
+
+.loader-logo{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    box-shadow:
+        0 0 30px rgba(212,175,55,.2),
+        inset 0 0 25px rgba(212,175,55,.08);
+    animation:pulse 1.7s infinite;
+}
+
+.loader-logo span{
+    color:var(--gold2);
+    font-family:"Playfair Display",serif;
+    font-size:30px;
+    font-weight:700;
+}
+
+.loader-text{
+    margin-top:20px;
+    color:var(--gold2);
+    letter-spacing:5px;
+    font-size:11px;
+    text-transform:uppercase;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.06);
+        box-shadow:0 0 45px rgba(212,175,55,.35);
+    }
+}
+
+/* NAVBAR */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:5000;
+    padding:20px 0;
+    transition:.35s ease;
+}
+
+.navbar.scrolled{
+    padding:12px 0;
+    background:rgba(4,4,4,.78);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 10px 50px rgba(0,0,0,.35);
+}
+
+.nav{
+    width:min(1200px,94%);
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-mark{
+    width:44px;
+    height:44px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-family:"Playfair Display",serif;
+    font-weight:700;
+    font-size:19px;
+    box-shadow:0 0 20px rgba(212,175,55,.12);
+}
+
+.logo-text strong{
+    display:block;
+    color:#fff;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.logo-text span{
+    display:block;
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-top:2px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
+
+.nav-links a{
+    color:#ddd;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:var(--gold2);
+}
+
+.nav-order{
+    padding:12px 19px;
+    border:1px solid var(--gold);
+    border-radius:30px;
+    color:var(--gold2)!important;
+    background:rgba(212,175,55,.06);
+}
+
+.nav-order:hover{
+    background:var(--gold);
+    color:#000!important;
+}
+
+.menu-toggle{
+    display:none;
+    border:0;
+    background:none;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    padding:120px 0 70px;
+    background:
+        linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.72) 42%,rgba(0,0,0,.18) 100%),
+        url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=2200&q=90") center/cover;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 75% 50%,rgba(212,175,55,.18),transparent 27%),
+        linear-gradient(180deg,transparent 65%,#050505 100%);
+    pointer-events:none;
+}
+
+.hero-content{
+    position:relative;
+    z-index:3;
+    max-width:650px;
+}
+
+.hero-kicker{
+    color:var(--gold2);
+    font-size:11px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(48px,7vw,88px);
+    line-height:.95;
+    font-weight:700;
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    color:var(--gold2);
+    display:block;
+    text-shadow:0 0 35px rgba(212,175,55,.17);
+}
+
+.hero-description{
+    margin-top:25px;
+    color:#d0d0d0;
+    font-size:16px;
+    line-height:1.8;
+    max-width:540px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:34px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:15px 25px;
+    border-radius:3px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    transition:.3s ease;
+    cursor:pointer;
+}
+
+.btn-gold{
+    background:linear-gradient(135deg,#fff0a7,#d4af37,#9c7412);
+    color:#080808;
+    box-shadow:0 10px 35px rgba(212,175,55,.22);
+}
+
+.btn-gold:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 45px rgba(212,175,55,.38);
+}
+
+.btn-outline{
+    border:1px solid rgba(255,255,255,.32);
+    color:#fff;
+    background:rgba(255,255,255,.035);
+    backdrop-filter:blur(10px);
+}
+
+.btn-outline:hover{
+    border-color:var(--gold);
+    color:var(--gold2);
+    transform:translateY(-3px);
+}
+
+.hero-badge{
+    margin-top:30px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#aaa;
+    font-size:12px;
+}
+
+.hero-badge::before{
+    content:"";
+    width:32px;
+    height:1px;
+    background:var(--gold);
+}
+
+.hero-food{
+    position:absolute;
+    z-index:2;
+    right:4%;
+    top:50%;
+    transform:translateY(-50%);
+    width:min(510px,45vw);
+    height:min(510px,45vw);
+    border-radius:50%;
+    background:
+        radial-gradient(circle at center,#17110a 0 27%,transparent 28%),
+        radial-gradient(circle,#f7e29a 0 3%,transparent 4%),
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(212,175,55,.85) 0deg 7deg,
+            transparent 7deg 18deg
+        );
+    opacity:.9;
+    filter:drop-shadow(0 30px 60px rgba(0,0,0,.8));
+    box-shadow:
+        0 0 0 16px rgba(255,255,255,.025),
+        0 0 0 17px rgba(212,175,55,.15),
+        0 0 100px rgba(212,175,55,.14);
+}
+
+.hero-food::before{
+    content:"";
+    position:absolute;
+    inset:12%;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 32% 34%,#d9a82d 0 2%,transparent 3%),
+        radial-gradient(circle at 63% 26%,#e9c866 0 2%,transparent 3%),
+        radial-gradient(circle at 52% 67%,#c28b17 0 2%,transparent 3%),
+        radial-gradient(circle at 25% 63%,#f1d873 0 2%,transparent 3%),
+        radial-gradient(circle,#a85e19 0 13%,#8c4514 14% 30%,#63330e 31% 52%,#3b210c 53% 100%);
+    box-shadow:inset 0 0 55px #000;
+}
+
+.hero-food::after{
+    content:"";
+    position:absolute;
+    inset:7%;
+    border-radius:50%;
+    border:1px solid rgba(255,220,120,.55);
+}
+
+.steam{
+    position:absolute;
+    z-index:4;
+    right:23%;
+    top:21%;
+    width:4px;
+    height:150px;
+    background:linear-gradient(transparent,rgba(255,255,255,.28),transparent);
+    filter:blur(7px);
+    transform:rotate(7deg);
+    animation:steam 3.4s ease-in-out infinite;
+}
+
+.steam.two{
+    right:30%;
+    top:25%;
+    height:130px;
+    animation-delay:1.2s;
+}
+
+@keyframes steam{
+    50%{
+        transform:translateY(-30px) rotate(-8deg);
+        opacity:.4;
+    }
+}
+
+/* GOLD STRIP */
+
+.gold-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+    background:linear-gradient(90deg,rgba(212,175,55,.04),rgba(212,175,55,.1),rgba(212,175,55,.04));
+}
+
+.strip-inner{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+    color:#cfcfcf;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.strip-inner span{
+    color:var(--gold);
+}
+
+/* SECTIONS */
+
+section{
+    position:relative;
+}
+
+.section{
+    padding:115px 0;
+}
+
+.section-label{
+    color:var(--gold);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+}
+
+.section-title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(38px,5vw,65px);
+    line-height:1;
+    font-weight:600;
+}
+
+.section-title span{
+    color:var(--gold2);
+}
+
+.section-text{
+    color:#a9a9a9;
+    line-height:1.85;
+    font-size:15px;
+}
+
+/* ABOUT */
+
+.about{
+    background:
+        radial-gradient(circle at 10% 40%,rgba(212,175,55,.07),transparent 28%);
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.about-copy .section-text{
+    margin-top:25px;
+    max-width:560px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:35px;
+}
+
+.feature{
+    position:relative;
+    padding:24px;
+    border:1px solid rgba(212,175,55,.16);
+    background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+    backdrop-filter:blur(14px);
+    overflow:hidden;
+    transition:.35s;
+}
+
+.feature::after{
+    content:"";
+    position:absolute;
+    top:-100%;
+    left:-100%;
+    width:60%;
+    height:300%;
+    transform:rotate(25deg);
+    background:linear-gradient(transparent,rgba(255,255,255,.07),transparent);
+    transition:.6s;
+}
+
+.feature:hover::after{
+    left:140%;
+}
+
+.feature:hover{
+    transform:translateY(-7px);
+    border-color:rgba(212,175,55,.55);
+    box-shadow:0 20px 55px rgba(0,0,0,.35);
+}
+
+.feature-icon{
+    color:var(--gold2);
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.feature h3{
+    font-family:"Playfair Display",serif;
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.feature p{
+    color:#999;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.about-visual{
+    min-height:500px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.about-ring{
+    width:420px;
+    height:420px;
+    border:1px solid rgba(212,175,55,.28);
+    border-radius:50%;
+    position:absolute;
+    box-shadow:
+        0 0 100px rgba(212,175,55,.06),
+        inset 0 0 100px rgba(212,175,55,.04);
+}
+
+.about-ring::before,
+.about-ring::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(212,175,55,.12);
+}
+
+.about-ring::before{
+    inset:35px;
+}
+
+.about-ring::after{
+    inset:70px;
+}
+
+.about-card{
+    position:relative;
+    z-index:2;
+    width:330px;
+    padding:50px 35px;
+    text-align:center;
+    border:1px solid rgba(212,175,55,.35);
+    background:linear-gradient(145deg,#15130d,#080808);
+    box-shadow:0 35px 90px rgba(0,0,0,.65);
+}
+
+.about-card small{
+    color:var(--gold);
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-size:9px;
+}
+
+.about-card h3{
+    font-family:"Playfair Display",serif;
+    color:var(--gold2);
+    font-size:42px;
+    margin:17px 0 10px;
+}
+
+.about-card p{
+    color:#999;
+    line-height:1.7;
+    font-size:12px;
+}
+
+/* SIGNATURE */
+
+.signature{
+    background:
+        linear-gradient(90deg,#080808,rgba(15,12,6,.85),#080808);
+    border-top:1px solid rgba(212,175,55,.1);
+    border-bottom:1px solid rgba(212,175,55,.1);
+}
+
+.signature-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.signature-visual{
+    min-height:500px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(212,175,55,.22);
+    background:
+        linear-gradient(135deg,rgba(212,175,55,.08),transparent),
+        #0b0b0b;
+}
+
+.signature-visual::before{
+    content:"";
+    position:absolute;
+    width:390px;
+    height:390px;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:
+        radial-gradient(circle,#b66d1b 0 16%,#824713 17% 35%,#4b2a0e 36% 58%,#251607 59% 100%);
+    box-shadow:
+        0 0 0 12px rgba(255,255,255,.025),
+        0 0 0 13px rgba(212,175,55,.25),
+        0 35px 70px rgba(0,0,0,.8);
+}
+
+.signature-visual::after{
+    content:"SIGNATURE";
+    position:absolute;
+    bottom:28px;
+    left:30px;
+    color:rgba(255,255,255,.5);
+    font-size:9px;
+    letter-spacing:5px;
+}
+
+.signature-content .section-text{
+    margin-top:24px;
+    max-width:500px;
+}
+
+.signature-points{
+    margin-top:30px;
+    display:grid;
+    gap:13px;
+}
+
+.signature-point{
+    display:flex;
+    gap:12px;
+    color:#c5c5c5;
+    font-size:13px;
+}
+
+.signature-point span{
+    color:var(--gold);
+}
+
+/* MENU */
+
+.menu-section{
+    background:
+        radial-gradient(circle at 90% 20%,rgba(212,175,55,.07),transparent 30%);
+}
+
+.menu-header{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    align-items:end;
+    margin-bottom:45px;
+}
+
+.menu-filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.filter{
+    padding:10px 16px;
+    background:transparent;
+    border:1px solid rgba(255,255,255,.12);
+    color:#aaa;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:.25s;
+}
+
+.filter.active,
+.filter:hover{
+    border-color:var(--gold);
+    color:var(--gold2);
+    background:rgba(212,175,55,.07);
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.menu-card{
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:24px 26px;
+    border:1px solid rgba(212,175,55,.14);
+    background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+    transition:.35s;
+}
+
+.menu-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.05),transparent);
+    transform:translateX(-110%);
+    transition:.6s;
+}
+
+.menu-card:hover::before{
+    transform:translateX(110%);
+}
+
+.menu-card:hover{
+    border-color:rgba(212,175,55,.6);
+    transform:translateY(-4px);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.menu-info{
+    position:relative;
+    z-index:2;
+}
+
+.menu-category{
+    color:var(--gold);
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:7px;
+}
+
+.menu-name{
+    font-family:"Playfair Display",serif;
+    font-size:22px;
+}
+
+.menu-description{
+    color:#858585;
+    font-size:11px;
+    margin-top:6px;
+}
+
+.menu-price{
+    position:relative;
+    z-index:2;
+    color:var(--gold2);
+    font-family:"Playfair Display",serif;
+    font-size:24px;
+    white-space:nowrap;
+}
+
+.menu-card.hide{
+    display:none;
+}
+
+/* ORDER */
+
+.order{
+    padding:95px 0;
+    background:
+        linear-gradient(90deg,rgba(212,175,55,.05),transparent 50%,rgba(212,175,55,.05));
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.order-head{
+    text-align:center;
+    max-width:700px;
+    margin:auto;
+}
+
+.order-head .section-text{
+    margin-top:20px;
+}
+
+.order-grid{
+    margin-top:45px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.order-card{
+    padding:35px 25px;
+    text-align:center;
+    border:1px solid rgba(212,175,55,.18);
+    background:rgba(255,255,255,.035);
+    transition:.3s;
+}
+
+.order-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--gold);
+    box-shadow:0 25px 60px rgba(0,0,0,.4);
+}
+
+.order-icon{
+    font-size:30px;
+    margin-bottom:16px;
+}
+
+.order-card h3{
+    font-family:"Playfair Display",serif;
+    font-size:24px;
+}
+
+.order-card p{
+    color:#888;
+    font-size:12px;
+    margin:9px 0 20px;
+}
+
+/* LOCATION */
+
+.location-grid{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:45px;
+    align-items:stretch;
+}
+
+.contact-box{
+    padding:45px;
+    border:1px solid rgba(212,175,55,.2);
+    background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
+}
+
+.contact-item{
+    padding:20px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.contact-item:last-child{
+    border-bottom:0;
+}
+
+.contact-label{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:7px;
+}
+
+.contact-value{
+    color:#ddd;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.map-box{
+    min-height:450px;
+    overflow:hidden;
+    border:1px solid rgba(212,175,55,.25);
+    filter:saturate(.65) contrast(1.05);
+}
+
+.map-box iframe{
+    width:100%;
+    height:100%;
+    min-height:450px;
+    border:0;
+}
+
+/* FINAL CTA */
+
+.final-cta{
+    padding:130px 0;
+    text-align:center;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at center,rgba(212,175,55,.13),transparent 42%);
+}
+
+.cta-ring{
+    position:absolute;
+    width:650px;
+    height:650px;
+    border:1px solid rgba(212,175,55,.09);
+    border-radius:50%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+.cta-ring::before,
+.cta-ring::after{
+    content:"";
+    position:absolute;
+    border:1px solid rgba(212,175,55,.07);
+    border-radius:50%;
+}
+
+.cta-ring::before{
+    inset:65px;
+}
+
+.cta-ring::after{
+    inset:130px;
+}
+
+.cta-content{
+    position:relative;
+    z-index:2;
+}
+
+.cta-content .section-title{
+    max-width:800px;
+    margin:auto;
+}
+
+.cta-content p{
+    max-width:550px;
+    margin:25px auto 32px;
+    color:#999;
+    line-height:1.8;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid rgba(212,175,55,.15);
+    padding:35px 0;
+    background:#030303;
+}
+
+.footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.footer-copy{
+    color:#666;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.footer-copy strong{
+    color:var(--gold2);
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+}
+
+.footer-links a{
+    color:#777;
+    font-size:11px;
+    transition:.2s;
+}
+
+.footer-links a:hover{
+    color:var(--gold);
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+    position:fixed;
+    z-index:4000;
+    right:22px;
+    bottom:22px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#25D366;
+    color:#fff;
+    font-size:25px;
+    box-shadow:0 12px 35px rgba(0,0,0,.5);
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    transform:translateY(-5px) scale(1.06);
+}
+
+/* REVEAL */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+    .nav-links{
+        position:absolute;
+        top:75px;
+        left:4%;
+        right:4%;
+        padding:25px;
+        background:rgba(5,5,5,.96);
+        backdrop-filter:blur(20px);
+        border:1px solid var(--line);
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .nav-links a{
+        padding:15px 5px;
+        border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .hero{
+        min-height:900px;
+        background:
+            linear-gradient(180deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.68) 55%,rgba(0,0,0,.95) 100%),
+            url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=2200&q=90") center/cover;
+    }
+
+    .hero-content{
+        padding-top:40px;
+    }
+
+    .hero-food{
+        width:390px;
+        height:390px;
+        right:50%;
+        top:auto;
+        bottom:25px;
+        transform:translateX(50%);
+        opacity:.7;
+    }
+
+    .steam{
+        display:none;
+    }
+
+    .about-grid,
+    .signature-grid,
+    .location-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-visual{
+        min-height:420px;
+    }
+
+    .signature-visual{
+        min-height:400px;
+    }
+
+    .order-grid{
+        grid-template-columns:1fr;
+    }
+
+    .menu-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:650px){
+
+    .container{
+        width:90%;
+    }
+
+    .navbar{
+        padding:15px 0;
+    }
+
+    .logo-text strong{
+        font-size:12px;
+    }
+
+    .logo-mark{
+        width:40px;
+        height:40px;
+    }
+
+    .hero{
+        padding-top:110px;
+        min-height:850px;
+    }
+
+    .hero h1{
+        font-size:49px;
+        letter-spacing:-2px;
+    }
+
+    .hero-description{
+        font-size:14px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .hero-food{
+        width:320px;
+        height:320px;
+        bottom:35px;
+    }
+
+    .section{
+        padding:80px 0;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .about-ring{
+        width:330px;
+        height:330px;
+    }
+
+    .about-card{
+        width:270px;
+        padding:38px 24px;
+    }
+
+    .about-card h3{
+        font-size:34px;
+    }
+
+    .signature-visual{
+        min-height:340px;
+    }
+
+    .signature-visual::before{
+        width:260px;
+        height:260px;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr;
+    }
+
+    .menu-card{
+        padding:20px;
+    }
+
+    .menu-name{
+        font-size:18px;
+    }
+
+    .menu-price{
+        font-size:20px;
+    }
+
+    .contact-box{
+        padding:30px;
+    }
+
+    .map-box,
+    .map-box iframe{
+        min-height:350px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .cta-ring{
+        width:450px;
+        height:450px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<!-- ================= LOADER ================= -->
-
-<div id="loader">
-    <div class="loader-content">
-        <div class="loader-logo">T&Q</div>
-
-        <h1>TASTY <span>&</span> QUALITY</h1>
-
-        <p>NOODLES & BIRIYANI SPOT</p>
-
-        <div class="loader-line">
-            <div></div>
+<!-- LOADER -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo">
+            <span>TQ</span>
         </div>
-
-        <small>WELCOME TO GUDUR'S TASTE</small>
+        <div class="loader-text">Tasty & Quality</div>
     </div>
 </div>
 
-
-<!-- ================= NAVBAR ================= -->
-
+<!-- NAVBAR -->
 <header class="navbar" id="navbar">
+    <nav class="nav">
 
-    <div class="logo">
-        <div class="logo-circle">T&Q</div>
+        <a href="#home" class="logo">
+            <div class="logo-mark">TQ</div>
 
-        <div>
-            <strong>TASTY <span>&</span> QUALITY</strong>
-            <small>NOODLES & BIRIYANI SPOT</small>
+            <div class="logo-text">
+                <strong>TASTY & QUALITY</strong>
+                <span>Noodles & Biriyani Spot</span>
+            </div>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#order">Order</a>
+            <a href="#location">Location</a>
+            <a href="#order" class="nav-order">Order Now</a>
         </div>
-    </div>
 
+        <button class="menu-toggle" id="menuToggle">☰</button>
 
-    <nav id="navMenu">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#menu">Menu</a>
-        <a href="#order">Order</a>
-        <a href="#location">Location</a>
     </nav>
-
-
-    <button class="menu-btn" id="menuBtn">
-        ☰
-    </button>
-
 </header>
 
-
-<!-- ================= HERO ================= -->
-
+<!-- HERO -->
 <section class="hero" id="home">
 
-    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content reveal">
 
-    <div class="hero-content">
+            <div class="hero-kicker">
+                Authentic • Fresh • Delicious
+            </div>
 
-        <div class="hero-tag">
-            ✦ AUTHENTIC TASTE • GUDUR ✦
-        </div>
+            <h1>
+                Taste That
+                <span>Feels Royal.</span>
+            </h1>
 
-        <h1>
-            TASTE THAT
-            <span>STAYS</span>
-            WITH YOU.
-        </h1>
+            <p class="hero-description">
+                Premium biriyani, noodles, fried rice and delicious
+                starters prepared with rich flavours and quality ingredients.
+            </p>
 
-        <p>
-            Hot. Fresh. Delicious.
-            <br>
-            Experience the rich flavour of
-            <strong>Biriyani & Noodles</strong>.
-        </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-gold">
+                    Explore Menu
+                </a>
 
-        <div class="hero-buttons">
+                <a href="#order" class="btn btn-outline">
+                    Order Online
+                </a>
+            </div>
 
-            <a href="#menu" class="btn btn-gold">
-                EXPLORE MENU
-            </a>
-
-            <a href="#order" class="btn btn-outline">
-                ORDER NOW
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- CSS FOOD VISUAL -->
-
-    <div class="food-scene">
-
-        <div class="glow"></div>
-
-        <div class="plate">
-
-            <div class="rice rice1"></div>
-            <div class="rice rice2"></div>
-            <div class="rice rice3"></div>
-            <div class="rice rice4"></div>
-            <div class="rice rice5"></div>
-            <div class="rice rice6"></div>
-
-            <div class="chicken chicken1"></div>
-            <div class="chicken chicken2"></div>
-            <div class="chicken chicken3"></div>
-
-            <div class="onion onion1"></div>
-            <div class="onion onion2"></div>
-
-            <div class="mint mint1">✦</div>
-            <div class="mint mint2">✦</div>
+            <div class="hero-badge">
+                Gudur's destination for flavour lovers
+            </div>
 
         </div>
-
-        <div class="steam steam1"></div>
-        <div class="steam steam2"></div>
-        <div class="steam steam3"></div>
-
     </div>
 
+    <div class="hero-food"></div>
 
-    <div class="scroll">
-        SCROLL TO DISCOVER
-        <span>↓</span>
-    </div>
+    <div class="steam"></div>
+    <div class="steam two"></div>
 
 </section>
 
-
-<!-- ================= GOLD STRIP ================= -->
-
+<!-- GOLD STRIP -->
 <div class="gold-strip">
-
-    <span>✦ FRESHLY PREPARED</span>
-    <span>✦ AUTHENTIC FLAVOUR</span>
-    <span>✦ HOT & DELICIOUS</span>
-    <span>✦ GUDUR</span>
-
+    <div class="strip-inner">
+        <span>✦</span>
+        Freshly Prepared
+        <span>✦</span>
+        Premium Taste
+        <span>✦</span>
+        Quality Ingredients
+        <span>✦</span>
+        Made With Love
+        <span>✦</span>
+    </div>
 </div>
 
-
-<!-- ================= ABOUT ================= -->
-
+<!-- ABOUT -->
 <section class="section about" id="about">
 
-    <div class="section-label">
-        ABOUT US
-    </div>
+    <div class="container">
 
-    <h2>
-        SIMPLE FOOD.
-        <span>BIG FLAVOUR.</span>
-    </h2>
+        <div class="about-grid">
 
-    <p class="section-text">
-        Welcome to Tasty & Quality Noodles and Biriyani Spot.
-        We bring together delicious biriyani, noodles, fried rice
-        and popular fast-food favourites — prepared hot and served
-        with flavour.
-    </p>
+            <div class="about-copy reveal">
 
+                <div class="section-label">
+                    Our Story
+                </div>
 
-    <div class="features">
+                <h2 class="section-title">
+                    Simple Food.
+                    <span>Extraordinary Taste.</span>
+                </h2>
 
-        <div class="feature">
-            <div>🔥</div>
-            <h3>HOT & FRESH</h3>
-            <p>Prepared fresh for every order.</p>
-        </div>
+                <p class="section-text">
+                    Welcome to Tasty & Quality Noodles and Biriyani Spot.
+                    We bring together delicious flavours, fresh ingredients
+                    and satisfying portions to create food that you will
+                    want to come back for.
+                </p>
 
-        <div class="feature">
-            <div>🍚</div>
-            <h3>RICH FLAVOUR</h3>
-            <p>Made for authentic Indian taste.</p>
-        </div>
+                <div class="features">
 
-        <div class="feature">
-            <div>⚡</div>
-            <h3>QUICK SERVICE</h3>
-            <p>Hot food without unnecessary waiting.</p>
+                    <div class="feature">
+                        <div class="feature-icon">✦</div>
+                        <h3>Fresh Ingredients</h3>
+                        <p>
+                            Carefully selected ingredients for better taste
+                            and quality.
+                        </p>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">♨</div>
+                        <h3>Hot & Fresh</h3>
+                        <p>
+                            Food prepared fresh and served with rich aroma
+                            and flavour.
+                        </p>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">◆</div>
+                        <h3>Rich Flavours</h3>
+                        <p>
+                            Carefully balanced spices for an unforgettable
+                            experience.
+                        </p>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">♥</div>
+                        <h3>Made With Love</h3>
+                        <p>
+                            Every dish is prepared with attention and care.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="about-visual reveal">
+
+                <div class="about-ring"></div>
+
+                <div class="about-card">
+                    <small>Our Promise</small>
+
+                    <h3>Tasty.</h3>
+
+                    <p>
+                        Quality food, satisfying portions and flavours
+                        worth remembering.
+                    </p>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
 </section>
 
+<!-- SIGNATURE -->
+<section class="section signature">
 
-<!-- ================= SIGNATURE ================= -->
+    <div class="container">
 
-<section class="signature">
+        <div class="signature-grid">
 
-    <div class="signature-food">
-        <div class="mini-bowl">
-            <div class="mini-rice"></div>
-            <div class="mini-chicken"></div>
+            <div class="signature-visual reveal"></div>
+
+            <div class="signature-content reveal">
+
+                <div class="section-label">
+                    Signature Dish
+                </div>
+
+                <h2 class="section-title">
+                    The
+                    <span>Biriyani</span>
+                    Experience.
+                </h2>
+
+                <p class="section-text">
+                    Aromatic rice, rich spices and perfectly cooked chicken
+                    come together for a satisfying biriyani experience.
+                </p>
+
+                <div class="signature-points">
+
+                    <div class="signature-point">
+                        <span>✓</span>
+                        Rich aromatic spices
+                    </div>
+
+                    <div class="signature-point">
+                        <span>✓</span>
+                        Freshly prepared
+                    </div>
+
+                    <div class="signature-point">
+                        <span>✓</span>
+                        Perfectly balanced flavours
+                    </div>
+
+                    <div class="signature-point">
+                        <span>✓</span>
+                        Generous portions
+                    </div>
+
+                </div>
+
+                <a href="#menu" class="btn btn-gold" style="margin-top:30px;">
+                    View Full Menu
+                </a>
+
+            </div>
+
         </div>
-    </div>
-
-
-    <div class="signature-content">
-
-        <div class="section-label">
-            OUR SPECIAL
-        </div>
-
-        <h2>
-            BIRYANI
-            <span>PERFECTION</span>
-        </h2>
-
-        <p>
-            Fragrant rice, aromatic spices and delicious toppings
-            coming together in one satisfying plate.
-        </p>
-
-        <a href="#menu" class="text-link">
-            VIEW MENU →
-        </a>
 
     </div>
 
 </section>
 
-
-<!-- ================= MENU ================= -->
-
+<!-- MENU -->
 <section class="section menu-section" id="menu">
 
-    <div class="section-label">
-        OUR MENU
-    </div>
+    <div class="container">
 
-    <h2>
-        CHOOSE YOUR
-        <span>FAVOURITE</span>
-    </h2>
+        <div class="menu-header reveal">
 
+            <div>
+                <div class="section-label">
+                    Our Menu
+                </div>
 
-    <div class="filters">
-
-        <button class="filter active" data-filter="all">
-            ALL
-        </button>
-
-        <button class="filter" data-filter="biryani">
-            BIRIYANI
-        </button>
-
-        <button class="filter" data-filter="noodles">
-            NOODLES
-        </button>
-
-        <button class="filter" data-filter="rice">
-            FRIED RICE
-        </button>
-
-        <button class="filter" data-filter="starters">
-            STARTERS
-        </button>
-
-    </div>
-
-
-    <div class="menu-grid">
-
-
-        <!-- BIRIYANI -->
-
-        <article class="menu-card" data-category="biryani">
-
-            <div class="food-icon biryani-icon">
-                🍗
+                <h2 class="section-title">
+                    Made To
+                    <span>Crave.</span>
+                </h2>
             </div>
 
-            <div class="menu-info">
+            <div class="menu-filters">
 
-                <span class="category">
-                    BIRIYANI
-                </span>
+                <button class="filter active" data-filter="all">
+                    All
+                </button>
 
-                <h3>Chicken Dum Biriyani</h3>
+                <button class="filter" data-filter="biriyani">
+                    Biriyani
+                </button>
 
-                <p>
-                    Aromatic chicken dum biriyani.
-                </p>
+                <button class="filter" data-filter="noodles">
+                    Noodles
+                </button>
 
-                <strong>₹249</strong>
+                <button class="filter" data-filter="rice">
+                    Fried Rice
+                </button>
+
+                <button class="filter" data-filter="starter">
+                    Starters
+                </button>
 
             </div>
 
-        </article>
+        </div>
 
+        <div class="menu-grid">
 
-        <article class="menu-card" data-category="biryani">
-
-            <div class="food-icon biryani-icon">
-                🍚
+            <div class="menu-card reveal" data-category="biriyani">
+                <div class="menu-info">
+                    <div class="menu-category">Biriyani</div>
+                    <div class="menu-name">Chicken Dum Biriyani</div>
+                    <div class="menu-description">
+                        Aromatic dum biriyani with rich spices.
+                    </div>
+                </div>
+                <div class="menu-price">₹249</div>
             </div>
 
-            <div class="menu-info">
-
-                <span class="category">
-                    BIRIYANI
-                </span>
-
-                <h3>Chicken Dum Biriyani FULL</h3>
-
-                <p>
-                    Full-size delicious biriyani.
-                </p>
-
-                <strong>₹299</strong>
-
+            <div class="menu-card reveal" data-category="biriyani">
+                <div class="menu-info">
+                    <div class="menu-category">Biriyani</div>
+                    <div class="menu-name">Chicken Dum Biriyani Full</div>
+                    <div class="menu-description">
+                        A generous full portion for a satisfying meal.
+                    </div>
+                </div>
+                <div class="menu-price">₹299</div>
             </div>
 
-        </article>
-
-
-        <!-- NOODLES -->
-
-        <article class="menu-card" data-category="noodles">
-
-            <div class="food-icon">
-                🍜
+            <div class="menu-card reveal" data-category="noodles">
+                <div class="menu-info">
+                    <div class="menu-category">Noodles</div>
+                    <div class="menu-name">Veg Noodles</div>
+                    <div class="menu-description">
+                        Fresh vegetables tossed with delicious noodles.
+                    </div>
+                </div>
+                <div class="menu-price">₹159</div>
             </div>
 
-            <div class="menu-info">
-
-                <span class="category">
-                    NOODLES
-                </span>
-
-                <h3>Veg Noodles</h3>
-
-                <p>
-                    Hot & spicy vegetable noodles.
-                </p>
-
-                <strong>₹159</strong>
-
+            <div class="menu-card reveal" data-category="noodles">
+                <div class="menu-info">
+                    <div class="menu-category">Noodles</div>
+                    <div class="menu-name">Egg Noodles</div>
+                    <div class="menu-description">
+                        Flavourful noodles prepared with egg.
+                    </div>
+                </div>
+                <div class="menu-price">₹169</div>
             </div>
 
-        </article>
-
-
-        <article class="menu-card" data-category="noodles">
-
-            <div class="food-icon">
-                🍜
+            <div class="menu-card reveal" data-category="noodles">
+                <div class="menu-info">
+                    <div class="menu-category">Noodles</div>
+                    <div class="menu-name">Chicken Noodles</div>
+                    <div class="menu-description">
+                        Delicious noodles with juicy chicken pieces.
+                    </div>
+                </div>
+                <div class="menu-price">₹189</div>
             </div>
 
-            <div class="menu-info">
-
-                <span class="category">
-                    NOODLES
-                </span>
-
-                <h3>Egg Noodles</h3>
-
-                <p>
-                    Egg noodles with delicious seasoning.
-                </p>
-
-                <strong>₹169</strong>
-
+            <div class="menu-card reveal" data-category="rice">
+                <div class="menu-info">
+                    <div class="menu-category">Fried Rice</div>
+                    <div class="menu-name">Veg Fried Rice</div>
+                    <div class="menu-description">
+                        Classic fried rice packed with vegetables.
+                    </div>
+                </div>
+                <div class="menu-price">₹129</div>
             </div>
 
-        </article>
-
-
-        <article class="menu-card" data-category="noodles">
-
-            <div class="food-icon">
-                🍜
+            <div class="menu-card reveal" data-category="rice">
+                <div class="menu-info">
+                    <div class="menu-category">Fried Rice</div>
+                    <div class="menu-name">Gobi Fried Rice</div>
+                    <div class="menu-description">
+                        Fried rice combined with crispy gobi flavours.
+                    </div>
+                </div>
+                <div class="menu-price">₹159</div>
             </div>
 
-            <div class="menu-info">
-
-                <span class="category">
-                    NOODLES
-                </span>
-
-                <h3>Chicken Noodles</h3>
-
-                <p>
-                    Chicken loaded noodles.
-                </p>
-
-                <strong>₹189</strong>
-
+            <div class="menu-card reveal" data-category="rice">
+                <div class="menu-info">
+                    <div class="menu-category">Fried Rice</div>
+                    <div class="menu-name">Chicken Fried Rice</div>
+                    <div class="menu-description">
+                        Fragrant fried rice with chicken.
+                    </div>
+                </div>
+                <div class="menu-price">₹189</div>
             </div>
 
-        </article>
-
-
-        <!-- FRIED RICE -->
-
-        <article class="menu-card" data-category="rice">
-
-            <div class="food-icon">
-                🍚
+            <div class="menu-card reveal" data-category="starter">
+                <div class="menu-info">
+                    <div class="menu-category">Starters</div>
+                    <div class="menu-name">Veg Manchurian</div>
+                    <div class="menu-description">
+                        Crispy vegetable balls in a flavourful sauce.
+                    </div>
+                </div>
+                <div class="menu-price">₹139</div>
             </div>
 
-            <div class="menu-info">
-
-                <span class="category">
-                    FRIED RICE
-                </span>
-
-                <h3>Veg Fried Rice</h3>
-
-                <p>
-                    Classic vegetable fried rice.
-                </p>
-
-                <strong>₹129</strong>
-
+            <div class="menu-card reveal" data-category="starter">
+                <div class="menu-info">
+                    <div class="menu-category">Starters</div>
+                    <div class="menu-name">Chicken Manchurian</div>
+                    <div class="menu-description">
+                        Tender chicken with rich Manchurian flavours.
+                    </div>
+                </div>
+                <div class="menu-price">₹249</div>
             </div>
 
-        </article>
-
-
-        <article class="menu-card" data-category="rice">
-
-            <div class="food-icon">
-                🍚
-            </div>
-
-            <div class="menu-info">
-
-                <span class="category">
-                    FRIED RICE
-                </span>
-
-                <h3>Gobi Fried Rice</h3>
-
-                <p>
-                    Crispy gobi with fried rice.
-                </p>
-
-                <strong>₹159</strong>
-
-            </div>
-
-        </article>
-
-
-        <article class="menu-card" data-category="rice">
-
-            <div class="food-icon">
-                🍗
-            </div>
-
-            <div class="menu-info">
-
-                <span class="category">
-                    FRIED RICE
-                </span>
-
-                <h3>Chicken Fried Rice</h3>
-
-                <p>
-                    Chicken fried rice with rich flavour.
-                </p>
-
-                <strong>₹189</strong>
-
-            </div>
-
-        </article>
-
-
-        <!-- STARTERS -->
-
-        <article class="menu-card" data-category="starters">
-
-            <div class="food-icon">
-                🌶️
-            </div>
-
-            <div class="menu-info">
-
-                <span class="category">
-                    STARTER
-                </span>
-
-                <h3>Veg Manchurian</h3>
-
-                <p>
-                    Crispy Manchurian with spicy sauce.
-                </p>
-
-                <strong>₹139</strong>
-
-            </div>
-
-        </article>
-
-
-        <article class="menu-card" data-category="starters">
-
-            <div class="food-icon">
-                🍗
-            </div>
-
-            <div class="menu-info">
-
-                <span class="category">
-                    STARTER
-                </span>
-
-                <h3>Chicken Manchurian</h3>
-
-                <p>
-                    Juicy chicken with Manchurian sauce.
-                </p>
-
-                <strong>₹249</strong>
-
-            </div>
-
-        </article>
-
+        </div>
 
     </div>
 
 </section>
 
+<!-- ORDER -->
+<section class="order" id="order">
 
-<!-- ================= ORDER ================= -->
+    <div class="container">
 
-<section class="order-section" id="order">
+        <div class="order-head reveal">
 
-    <div class="order-content">
+            <div class="section-label">
+                Order Now
+            </div>
 
-        <div class="section-label">
-            ORDER YOUR FOOD
+            <h2 class="section-title">
+                Your Food.
+                <span>Your Way.</span>
+            </h2>
+
+            <p class="section-text">
+                Choose your favourite way to order from Tasty & Quality
+                Noodles and Biriyani Spot.
+            </p>
+
         </div>
 
-        <h2>
-            HUNGRY?
-            <span>LET'S EAT.</span>
-        </h2>
+        <div class="order-grid">
 
-        <p>
-            Choose your favourite ordering platform
-            and enjoy your food.
-        </p>
-
-
-        <div class="order-buttons">
-
-            <a
-                href="https://share.google/EI2Zk1irz6ricr0BL"
-                target="_blank"
-                class="order-card swiggy"
-            >
+            <div class="order-card reveal">
                 <div class="order-icon">🛵</div>
 
-                <div>
-                    <strong>ORDER ON SWIGGY</strong>
-                    <small>Fast food delivery</small>
-                </div>
+                <h3>Swiggy</h3>
 
-                <span>→</span>
-            </a>
+                <p>
+                    Order your favourites online.
+                </p>
 
+                <a
+                    href="https://share.google/EI2Zk1irz6ricr0BL"
+                    target="_blank"
+                    class="btn btn-gold">
+                    Order on Swiggy
+                </a>
+            </div>
 
-            <a
-                href="https://share.google/wYvc5NZs6gGQPEDO0"
-                target="_blank"
-                class="order-card zomato"
-            >
-                <div class="order-icon">🍽️</div>
+            <div class="order-card reveal">
+                <div class="order-icon">🍴</div>
 
-                <div>
-                    <strong>ORDER ON ZOMATO</strong>
-                    <small>Order your favourites</small>
-                </div>
+                <h3>Zomato</h3>
 
-                <span>→</span>
-            </a>
+                <p>
+                    Browse the menu and order online.
+                </p>
 
+                <a
+                    href="https://share.google/wYvc5NZs6gGQPEDO0"
+                    target="_blank"
+                    class="btn btn-gold">
+                    Order on Zomato
+                </a>
+            </div>
 
-            <a
-                href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
-                target="_blank"
-                class="order-card whatsapp"
-            >
+            <div class="order-card reveal">
                 <div class="order-icon">💬</div>
 
-                <div>
-                    <strong>ORDER ON WHATSAPP</strong>
-                    <small>Direct ordering</small>
-                </div>
+                <h3>WhatsApp</h3>
 
-                <span>→</span>
-            </a>
+                <p>
+                    Contact us directly for your order.
+                </p>
+
+                <a
+                    href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
+                    target="_blank"
+                    class="btn btn-gold">
+                    WhatsApp Us
+                </a>
+            </div>
 
         </div>
 
@@ -621,90 +1758,68 @@
 
 </section>
 
+<!-- LOCATION -->
+<section class="section" id="location">
 
-<!-- ================= LOCATION ================= -->
+    <div class="container">
 
-<section class="section location" id="location">
+        <div class="location-grid">
 
-    <div class="section-label">
-        FIND US
-    </div>
+            <div class="contact-box reveal">
 
-    <h2>
-        VISIT
-        <span>US</span>
-    </h2>
+                <div class="section-label">
+                    Visit Us
+                </div>
 
+                <h2 class="section-title">
+                    Find
+                    <span>Us.</span>
+                </h2>
 
-    <div class="location-grid">
+                <div class="contact-item">
+                    <div class="contact-label">Address</div>
 
-        <div class="location-info">
-
-            <div class="location-item">
-
-                <span>📍</span>
-
-                <div>
-                    <small>ADDRESS</small>
-
-                    <p>
-                        Ashok Nagar, Gudur,
-                        West Gudur Rural,
+                    <div class="contact-value">
+                        Ashok Nagar, Gudur,<br>
+                        West Gudur Rural,<br>
                         Andhra Pradesh 524101
-                    </p>
+                    </div>
                 </div>
 
-            </div>
+                <div class="contact-item">
+                    <div class="contact-label">Phone</div>
 
-
-            <div class="location-item">
-
-                <span>📞</span>
-
-                <div>
-                    <small>CALL US</small>
-
-                    <p>
+                    <div class="contact-value">
                         +91 93936 32393
-                    </p>
+                    </div>
                 </div>
 
-            </div>
+                <div class="contact-item">
+                    <div class="contact-label">Opening Hours</div>
 
-
-            <div class="location-item">
-
-                <span>🕚</span>
-
-                <div>
-                    <small>OPENING</small>
-
-                    <p>
+                    <div class="contact-value">
                         Open until 11:00 PM
-                    </p>
+                    </div>
                 </div>
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh"
+                    target="_blank"
+                    class="btn btn-gold"
+                    style="margin-top:25px;">
+                    Get Directions
+                </a>
 
             </div>
 
+            <div class="map-box reveal">
 
-            <a
-                class="maps-button"
-                target="_blank"
-                href="https://www.google.com/maps/search/?api=1&query=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh"
-            >
-                OPEN IN GOOGLE MAPS →
-            </a>
+                <iframe
+                    src="https://www.google.com/maps?q=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh&output=embed"
+                    loading="lazy">
+                </iframe>
 
-        </div>
-
-
-        <div class="map-box">
-
-            <iframe
-                src="https://www.google.com/maps?q=5R4X%2BMC%20Gudur%2C%20Andhra%20Pradesh&output=embed"
-                loading="lazy"
-                allowfullscreen>
-            </iframe>
+            </div>
 
         </div>
 
@@ -712,78 +1827,249 @@
 
 </section>
 
-
-<!-- ================= CTA ================= -->
-
+<!-- FINAL CTA -->
 <section class="final-cta">
 
-    <div class="cta-inner">
+    <div class="cta-ring"></div>
 
-        <span>ONE BITE.</span>
+    <div class="container">
 
-        <h2>
-            PURE
-            <strong>TASTE.</strong>
-        </h2>
+        <div class="cta-content reveal">
 
-        <p>
-            Tasty & Quality Noodles and Biriyani Spot
-        </p>
+            <div class="section-label">
+                Tasty & Quality
+            </div>
 
-        <a href="#order" class="btn btn-gold">
-            ORDER NOW
-        </a>
+            <h2 class="section-title">
+                Come Hungry.
+                <span>Leave Happy.</span>
+            </h2>
+
+            <p>
+                Great food doesn't need an occasion.
+                Sometimes, all you need is a plate of perfectly prepared
+                biriyani or your favourite noodles.
+            </p>
+
+            <a href="#order" class="btn btn-gold">
+                Order Your Favourite
+            </a>
+
+        </div>
 
     </div>
 
 </section>
 
-
-<!-- ================= FOOTER ================= -->
-
+<!-- FOOTER -->
 <footer>
 
-    <div class="footer-logo">
-        T&Q
-    </div>
+    <div class="container">
 
-    <h3>
-        TASTY & QUALITY
-    </h3>
+        <div class="footer-inner">
 
-    <p>
-        NOODLES & BIRIYANI SPOT
-    </p>
+            <div class="footer-copy">
+                © <span id="year"></span>
+                Tasty & Quality Noodles and Biriyani Spot.
+                All Rights Reserved.
+            </div>
 
-    <div class="footer-line"></div>
+            <div class="footer-copy">
+                Designed by
+                <strong>RAHULCHAKRI KASUKURTHI</strong>
+            </div>
 
-    <small>
-        © <span id="year"></span>
-        Tasty & Quality Noodles and Biriyani Spot.
-        All Rights Reserved.
-    </small>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#menu">Menu</a>
+                <a href="#order">Order</a>
+            </div>
 
-    <div class="designer">
-        Designed by
-        <strong>RAHULCHAKRI KASUKURTHI</strong>
+        </div>
+
     </div>
 
 </footer>
 
-
-<!-- ================= FLOATING WHATSAPP ================= -->
-
+<!-- WHATSAPP FLOATING BUTTON -->
 <a
-    class="floating-whatsapp"
-    href="https://wa.me/919393632393"
+    href="https://wa.me/919393632393?text=Hello%20Tasty%20%26%20Quality%20Noodles%20and%20Biriyani%20Spot%2C%20I%20would%20like%20to%20place%20an%20order."
     target="_blank"
-    aria-label="WhatsApp"
->
-    💬
+    class="whatsapp"
+    aria-label="WhatsApp">
+    ☎
 </a>
 
+<script>
 
-<script src="script.js"></script>
+/* LOADER */
+
+window.addEventListener("load",function(){
+    setTimeout(function(){
+        document.getElementById("loader").classList.add("hide");
+    },700);
+});
+
+
+/* NAVBAR */
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll",function(){
+
+    if(window.scrollY > 50){
+        navbar.classList.add("scrolled");
+    }else{
+        navbar.classList.remove("scrolled");
+    }
+
+});
+
+
+/* MOBILE MENU */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click",function(){
+
+    navLinks.classList.toggle("open");
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(function(link){
+
+    link.addEventListener("click",function(){
+        navLinks.classList.remove("open");
+    });
+
+});
+
+
+/* HERO PARALLAX */
+
+const heroFood = document.querySelector(".hero-food");
+const heroContent = document.querySelector(".hero-content");
+
+window.addEventListener("mousemove",function(e){
+
+    const x = (window.innerWidth / 2 - e.clientX) / 50;
+    const y = (window.innerHeight / 2 - e.clientY) / 50;
+
+    if(heroFood && window.innerWidth > 950){
+
+        heroFood.style.marginLeft = `${x}px`;
+        heroFood.style.marginTop = `${y}px`;
+
+    }
+
+    if(heroContent && window.innerWidth > 950){
+
+        heroContent.style.transform =
+            `translate(${x * -0.15}px,${y * -0.15}px)`;
+
+    }
+
+});
+
+
+/* MENU FILTER */
+
+const filters = document.querySelectorAll(".filter");
+const menuCards = document.querySelectorAll(".menu-card");
+
+filters.forEach(function(filter){
+
+    filter.addEventListener("click",function(){
+
+        filters.forEach(function(item){
+            item.classList.remove("active");
+        });
+
+        filter.classList.add("active");
+
+        const selected = filter.dataset.filter;
+
+        menuCards.forEach(function(card){
+
+            const category = card.dataset.category;
+
+            if(selected === "all" || category === selected){
+
+                card.classList.remove("hide");
+
+            }else{
+
+                card.classList.add("hide");
+
+            }
+
+        });
+
+    });
+
+});
+
+
+/* CURRENT YEAR */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* SCROLL REVEAL */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+    function(entries){
+
+        entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },
+    {
+        threshold:0.12
+    }
+);
+
+revealElements.forEach(function(element){
+    observer.observe(element);
+});
+
+
+/* GOLD CURSOR GLOW */
+
+const cursorGlow = document.createElement("div");
+
+cursorGlow.style.position = "fixed";
+cursorGlow.style.width = "180px";
+cursorGlow.style.height = "180px";
+cursorGlow.style.borderRadius = "50%";
+cursorGlow.style.pointerEvents = "none";
+cursorGlow.style.zIndex = "9998";
+cursorGlow.style.transform = "translate(-50%,-50%)";
+cursorGlow.style.background =
+    "radial-gradient(circle,rgba(212,175,55,.08),transparent 65%)";
+cursorGlow.style.transition = "opacity .3s";
+
+document.body.appendChild(cursorGlow);
+
+window.addEventListener("mousemove",function(e){
+
+    cursorGlow.style.left = e.clientX + "px";
+    cursorGlow.style.top = e.clientY + "px";
+
+});
+
+</script>
 
 </body>
 </html>
